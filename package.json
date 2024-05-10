@@ -1,0 +1,14 @@
+{
+  "name": "@ayako/root",
+  "version": "0.0.1",
+  "description": "",
+  "scripts": {
+    "postinstall": "preconstruct dev && manypkg check"
+  },
+  "keywords": [],
+  "author": "Larsundso",
+  "license": "ISC",
+  "dependencies": {
+    "@manypkg/cli": "^0.21.4"
+  }
+}
