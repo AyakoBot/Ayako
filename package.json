@@ -1,14 +1,19 @@
 {
   "name": "@ayako/root",
-  "version": "0.0.1",
   "description": "",
   "scripts": {
-    "postinstall": "preconstruct dev && manypkg check"
+    "postinstall": "pnpm manypkg check",
+    "prisma:push": "pnpx prisma db push"
   },
   "keywords": [],
   "author": "Larsundso",
   "license": "ISC",
   "dependencies": {
-    "@manypkg/cli": "^0.21.4"
+    "@manypkg/cli": "^0.21.4",
+    "@prisma/client": "^5.13.0",
+    "prisma": "^5.13.0"
+  },
+  "prisma": {
+    "schema": "prisma/schema.prisma"
   }
 }
