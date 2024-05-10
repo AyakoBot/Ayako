@@ -1,3 +1,9 @@
 [submodule "apps/Website"]
 	path = apps/Website
 	url = https://github.com/AyakoBot/Website.git
+[submodule "packages/Server"]
+	path = packages/Server
+	url = https://github.com/AyakoBot/Website.git
+[submodule "packages/Bot"]
+	path = packages/Bot
+	url = https://github.com/AyakoBot/Ayako-v2.git
