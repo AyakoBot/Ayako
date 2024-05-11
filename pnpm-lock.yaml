@@ -4,6 +4,11 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+patchedDependencies:
+  discord.js@14.15.2:
+    hash: i73sg5pgo2jbulms6aahzyu4a4
+    path: patches/discord.js@14.15.2.patch
+
 importers:
 
   .:
@@ -179,7 +184,7 @@ importers:
         version: 2.2.0
       discord.js:
         specifier: ^14.15.2
-        version: 14.15.2
+        version: 14.15.2(patch_hash=i73sg5pgo2jbulms6aahzyu4a4)
       dotenv:
         specifier: ^16.4.5
         version: 16.4.5
@@ -6699,7 +6704,7 @@ snapshots:
 
   discord-hybrid-sharding@2.2.0: {}
 
-  discord.js@14.15.2:
+  discord.js@14.15.2(patch_hash=i73sg5pgo2jbulms6aahzyu4a4):
     dependencies:
       '@discordjs/builders': 1.8.1
       '@discordjs/collection': 1.5.3

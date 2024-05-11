@@ -15,5 +15,10 @@
   },
   "prisma": {
     "schema": "prisma/schema.prisma"
+  },
+  "pnpm": {
+    "patchedDependencies": {
+      "discord.js@14.15.2": "patches/discord.js@14.15.2.patch"
+    }
   }
 }
