@@ -78,6 +78,12 @@ enum ArtType {
   emoji
 }
 
+enum AppealStatus {
+  pending
+  accepted
+  rejected
+}
+
 model afk {
   userid  String  @db.VarChar
   text    String?
@@ -134,12 +140,12 @@ model appealquestions {
 }
 
 model appeals {
-  userid       String  @db.VarChar
-  guildid      String  @db.VarChar
-  punishmentid Decimal @db.Decimal
-  notify       Boolean @default(false) @db.Boolean
+  userid       String       @db.VarChar
+  guildid      String       @db.VarChar
+  punishmentid Decimal      @db.Decimal
+  status       AppealStatus @default(pending)
 
-  @@id([userid, punishmentid])
+  @@id(punishmentid)
   @@index([userid, punishmentid])
 }
 
