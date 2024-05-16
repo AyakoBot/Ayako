@@ -4,7 +4,7 @@
  branch = main
 [submodule "packages/Server"]
 	path = packages/Server
-	url = https://github.com/AyakoBot/Website.git
+	url = https://github.com/AyakoBot/Server.git
  branch = main
 [submodule "packages/Bot"]
 	path = packages/Bot
