@@ -1,12 +1,16 @@
 [submodule "apps/Website"]
 	path = apps/Website
 	url = https://github.com/AyakoBot/Website.git
+ branch = main
 [submodule "packages/Server"]
 	path = packages/Server
 	url = https://github.com/AyakoBot/Website.git
+ branch = main
 [submodule "packages/Bot"]
 	path = packages/Bot
 	url = https://github.com/AyakoBot/Ayako-v2.git
+ branch = main
 [submodule "packages/CDN"]
 	path = packages/CDN
 	url = https://github.com/AyakoBot/Website-CDN.git
+ branch = main
