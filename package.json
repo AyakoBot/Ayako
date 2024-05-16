@@ -1,6 +1,11 @@
 {
   "name": "@ayako/root",
   "description": "",
+  "engines": {
+    "node": "=22.1.0",
+    "pnpm": "=9.1.1"
+  },
+  "packageManager": "pnpm@9.1.1",
   "scripts": {
     "postinstall": "pnpm manypkg check",
     "prisma:push": "pnpx prisma db push"
