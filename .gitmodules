@@ -7,3 +7,6 @@
 [submodule "packages/Bot"]
 	path = packages/Bot
 	url = https://github.com/AyakoBot/Ayako-v2.git
+[submodule "packages/CDN"]
+	path = packages/CDN
+	url = https://github.com/AyakoBot/Website-CDN.git
