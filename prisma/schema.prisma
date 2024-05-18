@@ -70,6 +70,7 @@ model appeals {
 
 model appealanswers {
   punishmentid   String     @db.VarChar
+  questionid     Decimal    @db.Decimal
   type           AnswerType
   string         String?
   number         Decimal?   @db.Decimal
