@@ -474,7 +474,7 @@ model nitrosettings {
   guildid       String   @id @db.VarChar
   active        Boolean  @default(false)
   logchannels   String[] @db.VarChar
-  rolemode      Boolean  @default(true)
+  rolemode      Boolean  @default(true) // ture = stack, false = replace
   notifchannels String[] @db.VarChar
   notifembed    Decimal? @db.Decimal
   notification  Boolean  @default(false)
@@ -717,7 +717,8 @@ model stats {
   channelcount Decimal  @db.Decimal
   rolecount    Decimal  @db.Decimal
   allusers     Decimal  @db.Decimal
-  willis       String[]
+  emotecount   Decimal  @db.Decimal
+  stickercount Decimal  @db.Decimal
 }
 
 model sticky {
@@ -807,6 +808,14 @@ model users {
   votereminders  Boolean  @default(true)
 
   @@index([userid])
+}
+
+model dmLog {
+  userId   String @id @db.VarChar
+  threadId String @db.VarChar
+  infoId String @db.VarChar
+
+  @@index(threadId)
 }
 
 model blockedusers {
