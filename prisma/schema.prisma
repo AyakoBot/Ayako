@@ -806,6 +806,7 @@ model users {
   accesstoken    String?
   ptremindersent Boolean  @default(false)
   votereminders  Boolean  @default(true)
+  scopes         String[]
 
   @@index([userid])
 }
