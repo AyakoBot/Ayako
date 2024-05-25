@@ -326,6 +326,16 @@ model guilds {
   @@index([guildid])
 }
 
+model customclients {
+  guildid   String  @id @db.VarChar
+  appid     String? @db.VarChar
+  token     String? @db.VarChar
+  publickey String? @db.VarChar
+  secret    String? @db.VarChar
+
+  @@index(appid)
+}
+
 model guildsettings {
   guildid           String   @id @db.VarChar
   prefix            String?
@@ -337,10 +347,7 @@ model guildsettings {
   lastrpsyncrun     Decimal? @db.Decimal
   ptreminderenabled Boolean  @default(true)
   legacyrp          Boolean  @default(false)
-  appid             String?  @db.VarChar
   editrpcommands    Boolean  @default(true)
-  publickey         String?
-  token             String?  @db.VarChar
   enableinvitesat   Decimal? @db.Decimal
   statuschannel     String?  @db.VarChar
   updateschannel    String?
