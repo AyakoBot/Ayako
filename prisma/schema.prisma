@@ -712,13 +712,13 @@ model selfroles {
 }
 
 model stats {
-  usercount    Decimal  @id @db.Decimal
-  guildcount   Decimal  @db.Decimal
-  channelcount Decimal  @db.Decimal
-  rolecount    Decimal  @db.Decimal
-  allusers     Decimal  @db.Decimal
-  emotecount   Decimal  @db.Decimal
-  stickercount Decimal  @db.Decimal
+  usercount    Decimal @id @db.Decimal
+  guildcount   Decimal @db.Decimal
+  channelcount Decimal @db.Decimal
+  rolecount    Decimal @db.Decimal
+  allusers     Decimal @db.Decimal
+  emotecount   Decimal @db.Decimal
+  stickercount Decimal @db.Decimal
 }
 
 model sticky {
@@ -793,28 +793,10 @@ model suggestionvotes {
   @@index([guildid])
 }
 
-model users {
-  userid         String   @id @db.VarChar
-  username       String   @default("Unkown User")
-  avatar         String   @default("https://cdn.discordapp.com/embed/avatars/0.png")
-  socials        String[]
-  socialstype    String[]
-  lastfetch      Decimal  @default(1) @db.Decimal
-  email          String?
-  refreshtoken   String?
-  expires        Decimal? @db.Decimal
-  accesstoken    String?
-  ptremindersent Boolean  @default(false)
-  votereminders  Boolean  @default(true)
-  scopes         String[]
-
-  @@index([userid])
-}
-
 model dmLog {
   userId   String @id @db.VarChar
   threadId String @db.VarChar
-  infoId String @db.VarChar
+  infoId   String @db.VarChar
 
   @@index(threadId)
 }
@@ -1005,6 +987,29 @@ model heartbeats {
   shard Decimal @id @db.Decimal
 
   @@index([shard])
+}
+
+model users {
+  userid         String   @id @db.VarChar
+  username       String   @default("Unkown User")
+  avatar         String   @default("https://cdn.discordapp.com/embed/avatars/0.png")
+  socials        String[]
+  socialstype    String[]
+  lastfetch      Decimal  @default(1) @db.Decimal
+  ptremindersent Boolean  @default(false)
+  votereminders  Boolean  @default(true)
+  tokens         tokens[]
+
+  @@index([userid])
+}
+
+model tokens {
+  userid       String   @id @db.VarChar
+  user         users    @relation(fields: [userid], references: [userid])
+  accesstoken  String?  @db.VarChar
+  refreshtoken String?  @db.VarChar
+  expires      Decimal? @db.Decimal
+  scopes       String[]
 }
 
 enum AutoPunishPunishmentType {
