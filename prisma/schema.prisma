@@ -1004,12 +1004,15 @@ model users {
 }
 
 model tokens {
-  userid       String   @id @db.VarChar
+  userid       String   @db.VarChar
+  botid        String   @db.VarChar
   user         users    @relation(fields: [userid], references: [userid])
   accesstoken  String?  @db.VarChar
   refreshtoken String?  @db.VarChar
   expires      Decimal? @db.Decimal
   scopes       String[]
+
+  @@id([userid, botid])
 }
 
 enum AutoPunishPunishmentType {
