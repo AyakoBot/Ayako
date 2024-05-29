@@ -64,6 +64,7 @@ model appeals {
   guildid      String       @db.VarChar
   punishmentid Decimal      @id @db.Decimal
   status       AppealStatus @default(pending)
+  received     Boolean      @default(false)
 
   @@index([userid, punishmentid])
 }
