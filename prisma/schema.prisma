@@ -43,6 +43,7 @@ model antivirus {
   action               PunishmentType @default(warn)
   deletemessageseconds Decimal        @default(604800) @db.Decimal
   duration             Decimal        @default(3600) @db.Decimal
+  deletemsg            Boolean        @default(false)
 
   @@index([guildid])
 }
