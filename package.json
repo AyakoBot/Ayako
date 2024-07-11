@@ -1,29 +1,30 @@
 {
-  "name": "@ayako/root",
-  "description": "",
-  "engines": {
-    "node": "=22.3.0",
-    "pnpm": "^9.2.0"
-  },
- "packageManager": "pnpm@9.2.0",
-  "scripts": {
-    "postinstall": "pnpm manypkg check",
-    "prisma:push": "pnpx prisma db push"
-  },
-  "keywords": [],
-  "author": "Larsundso",
-  "license": "ISC",
-  "dependencies": {
-    "@manypkg/cli": "^0.21.4",
-    "@prisma/client": "^5.14.0",
-    "prisma": "^5.14.0"
-  },
-  "prisma": {
-    "schema": "prisma/schema.prisma"
-  },
-  "pnpm": {
-    "patchedDependencies": {
-      "discord.js@14.15.2": "patches/discord.js@14.15.2.patch"
-    }
+ "name": "@ayako/root",
+ "description": "",
+ "private": true,
+ "packageManager": "pnpm@9.5.0",
+ "engines": {
+  "node": "^22.3.0",
+  "pnpm": "^9.5.0"
+ },
+ "scripts": {
+  "postinstall": "pnpm manypkg check",
+  "prisma:push": "pnpx prisma db push"
+ },
+ "keywords": [],
+ "author": "Larsundso",
+ "license": "ISC",
+ "dependencies": {
+  "@manypkg/cli": "^0.21.4",
+  "@prisma/client": "^5.16.2",
+  "prisma": "^5.16.2"
+ },
+ "prisma": {
+  "schema": "prisma/schema.prisma"
+ },
+ "pnpm": {
+  "patchedDependencies": {
+   "discord.js@14.15.3": "patches/discord.js@14.15.3.patch"
   }
+ }
 }
