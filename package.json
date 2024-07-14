@@ -6,7 +6,7 @@
   "license": "ISC",
   "author": "Larsundso",
   "scripts": {
-    "postinstall": "rm -r ./node_modules/.pnpm/@discordjs+builders@1.8.2/ && pnpm manypkg check",
+    "postinstall": "rm -r ./node_modules/.pnpm/@discordjs+builders@1.8.2/ && rm -r ./node_modules/.pnpm/discord-api-types@0.37.83/ && rm -r ./node_modules/.pnpm/discord-api-types@0.37.90/ && pnpm manypkg check",
     "prisma:push": "pnpx prisma db push"
   },
   "dependencies": {
@@ -25,7 +25,8 @@
     }
   },
   "overrides": {
-    "@discordjs/builders": "dev"
+    "@discordjs/builders": "dev",
+    "discord-api-types": "next"
   },
   "prisma": {
     "schema": "prisma/schema.prisma"
