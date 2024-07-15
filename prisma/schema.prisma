@@ -1042,7 +1042,7 @@ model commandUsage {
   guildId   String? @db.VarChar
   userId    String  @default("0") @db.VarChar
   timestamp Decimal @db.Decimal
-  type      Decimal @db.Decimal
+  type      Decimal @db.Decimal // 0 = string command, everything else = InteractionType
 
   @@id(timestamp)
   @@index([guildId, userId])
