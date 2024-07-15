@@ -727,13 +727,18 @@ model selfroles {
 }
 
 model stats {
-  usercount    Decimal @id @db.Decimal
-  guildcount   Decimal @db.Decimal
-  channelcount Decimal @db.Decimal
-  rolecount    Decimal @db.Decimal
-  allusers     Decimal @db.Decimal
-  emotecount   Decimal @db.Decimal
-  stickercount Decimal @db.Decimal
+  userCount    Decimal @db.Decimal
+  guildCount   Decimal @db.Decimal
+  channelCount Decimal @db.Decimal
+  roleCount    Decimal @db.Decimal
+  allUsers     Decimal @db.Decimal
+  emoteCount   Decimal @db.Decimal
+  stickerCount Decimal @db.Decimal
+  shardCount   Decimal @db.Decimal
+  clusterCount Decimal @db.Decimal
+  timestamp    Decimal @db.Decimal
+
+  @@id(timestamp)
 }
 
 model sticky {
@@ -818,7 +823,7 @@ model dmLog {
 
 model blockedusers {
   userid        String   @db.VarChar
-  blockeduserid String   @db.VarChar @default("0") // 0 means globally blocked
+  blockeduserid String   @default("0") @db.VarChar // 0 means globally blocked
   blockedcmd    String[]
 
   @@id([userid, blockeduserid])
@@ -998,9 +1003,11 @@ model features {
 }
 
 model heartbeats {
-  ms    Decimal @db.Decimal
-  shard Decimal @id @db.Decimal
+  ms        Decimal @db.Decimal
+  shard     Decimal @db.Decimal
+  timestamp Decimal @db.Decimal
 
+  @@id([timestamp, shard])
   @@index([shard])
 }
 
@@ -1028,6 +1035,17 @@ model tokens {
   scopes       String[]
 
   @@id([userid, botid])
+}
+
+model commandUsage {
+  command   String  @db.VarChar
+  guildId   String? @db.VarChar
+  userId    String  @default("0") @db.VarChar
+  timestamp Decimal @db.Decimal
+  type      Decimal @db.Decimal
+
+  @@id(timestamp)
+  @@index([guildId, userId])
 }
 
 enum AutoPunishPunishmentType {
