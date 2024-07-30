@@ -322,13 +322,15 @@ model giveaways {
 }
 
 model guilds {
-  guildid     String  @id @db.VarChar
-  name        String
-  icon        String?
-  banner      String?
-  invite      String?
-  membercount Decimal @default(2) @db.Decimal
-  fetchat     Decimal @db.Decimal
+  guildid       String   @id @db.VarChar
+  name          String
+  icon          String?
+  banner        String?
+  invite        String?
+  membercount   Decimal  @default(2) @db.Decimal
+  presencecount Decimal  @default(2) @db.Decimal
+  fetchat       Decimal  @db.Decimal
+  features      String[]
 
   @@index([guildid])
 }
