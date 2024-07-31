@@ -377,6 +377,16 @@ model level {
   @@index([guildid])
 }
 
+model levelchannels {
+  userid    String  @db.VarChar
+  guildid   String  @db.VarChar
+  channelid String  @db.VarChar
+  xp        Decimal @default(0) @db.Decimal
+
+  @@id([userid, guildid, channelid])
+  @@index([guildid])
+}
+
 model leveling {
   guildid         String      @id @db.VarChar
   active          Boolean     @default(true)
