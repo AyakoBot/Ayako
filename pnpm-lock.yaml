@@ -5,9 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 patchedDependencies:
-  discord.js@14.16.0-dev.1720915912-efa16a609:
-    hash: wh4fetiumk6vex6h2rjurdwv5e
-    path: patches/discord.js@14.16.0-dev.1720915912-efa16a609.patch
+  discord.js@14.16.0-dev.1722600269-bb459d95e:
+    hash: br3ngbp2a77oo54rrk6i4yidlm
+    path: patches/discord.js@14.16.0-dev.1722600269-bb459d95e.patch
 
 importers:
 
@@ -47,8 +47,8 @@ importers:
         specifier: ^2.1.1
         version: 2.1.1
       discord-api-types:
-        specifier: ^0.37.92
-        version: 0.37.92
+        specifier: 0.37.93-next.588140c.1721481579
+        version: 0.37.93-next.588140c.1721481579
       dotenv:
         specifier: ^16.4.5
         version: 16.4.5
@@ -126,8 +126,8 @@ importers:
   packages/Bot:
     dependencies:
       '@discordjs/builders':
-        specifier: 1.9.0-dev.1720743039-be04acd53
-        version: 1.9.0-dev.1720743039-be04acd53
+        specifier: 1.9.0-dev.1722600277-bb459d95e
+        version: 1.9.0-dev.1722600277-bb459d95e
       '@discordjs/core':
         specifier: ^1.2.0
         version: 1.2.0
@@ -153,14 +153,14 @@ importers:
         specifier: link:prisma/client@latest
         version: link:prisma/client@latest
       discord-api-types:
-        specifier: ^0.37.92
-        version: 0.37.92
+        specifier: 0.37.93-next.588140c.1721481579
+        version: 0.37.93-next.588140c.1721481579
       discord-hybrid-sharding:
         specifier: ^2.2.0
         version: 2.2.0
       discord.js:
-        specifier: 14.16.0-dev.1720915912-efa16a609
-        version: 14.16.0-dev.1720915912-efa16a609(patch_hash=wh4fetiumk6vex6h2rjurdwv5e)
+        specifier: 14.16.0-dev.1722600269-bb459d95e
+        version: 14.16.0-dev.1722600269-bb459d95e(patch_hash=br3ngbp2a77oo54rrk6i4yidlm)
       dotenv:
         specifier: ^16.4.5
         version: 16.4.5
@@ -326,8 +326,8 @@ importers:
         specifier: ^5.0.1
         version: 5.0.1(@sveltejs/kit@2.5.9(@sveltejs/vite-plugin-svelte@3.1.0(svelte@5.0.0-next.127)(vite@5.2.11(@types/node@20.14.10)))(svelte@5.0.0-next.127)(vite@5.2.11(@types/node@20.14.10)))
       discord-api-types:
-        specifier: ^0.37.92
-        version: 0.37.92
+        specifier: 0.37.93-next.588140c.1721481579
+        version: 0.37.93-next.588140c.1721481579
       dotenv:
         specifier: ^16.4.5
         version: 16.4.5
@@ -617,8 +617,8 @@ packages:
     resolution: {integrity: sha512-6wvG3QaCjtMu0xnle4SoOIeFB4y6fKMN6WZfy3BMKJdQQtPLik8KGzDwBVL/+wTtcE/ZlFjgEk74GublyEVZ7g==}
     engines: {node: '>=16.11.0'}
 
-  '@discordjs/builders@1.9.0-dev.1720743039-be04acd53':
-    resolution: {integrity: sha512-19XFsYkvVEG92INr+uOr3+uyrXWSBO8Btt1PmkWtE0ACKv7mZ4soa2avdHmuUh+/CtkadE73721QTKHxzL7npg==}
+  '@discordjs/builders@1.9.0-dev.1722600277-bb459d95e':
+    resolution: {integrity: sha512-UnwRMAtXJyMxGs3oSb4AIw0/dBY2p7EwFCXT9IW7uvywYDTtUaT20CtEn5USIp+zhlkRL83t3xvOqFgw/cgsHQ==}
     engines: {node: '>=16.11.0'}
 
   '@discordjs/collection@1.5.3':
@@ -2171,17 +2171,17 @@ packages:
   discord-api-types@0.37.83:
     resolution: {integrity: sha512-urGGYeWtWNYMKnYlZnOnDHm8fVRffQs3U0SpE8RHeiuLKb/u92APS8HoQnPTFbnXmY1vVnXjXO4dOxcAn3J+DA==}
 
-  discord-api-types@0.37.90:
-    resolution: {integrity: sha512-lpOJSGrqHuXoM4FV/2HtjoaJpCClGFHpRNIdZEW8zPINlsCHNSfIwA2EQ8dxeE6k1QhhTuM9ZlOGVYXoU7FLgA==}
+  discord-api-types@0.37.93:
+    resolution: {integrity: sha512-M5jn0x3bcXk8EI2c6F6V6LeOWq10B/cJf+YJSyqNmg7z4bdXK+Z7g9zGJwHS0h9Bfgs0nun2LQISFOzwck7G9A==}
 
-  discord-api-types@0.37.92:
-    resolution: {integrity: sha512-7xnedbQRLRef/O+4jKPyIFwl6YqoyihOG3OSneiRmVJMBk30ph2YuZGcHjeX1Kk/a3yQWeyCKe4RZJB3iECcxg==}
+  discord-api-types@0.37.93-next.588140c.1721481579:
+    resolution: {integrity: sha512-EeYGXLvTKELfyUiNauqTy3u2152Nxc5x3z2Xe3aj+V0UrMEsHfzaEU8A8L64yoxgV1sQy8db1FxjAgJ411JJNw==}
 
   discord-hybrid-sharding@2.2.0:
     resolution: {integrity: sha512-nI9iyqrrQvBR8HZjiNu8Tsb0HR9mqp0ZlSfiIxUaqiwaBzTtG2o4/yCZIMwnj3DnV4UZeuejuhPhr8vkz+uiwg==}
 
-  discord.js@14.16.0-dev.1720915912-efa16a609:
-    resolution: {integrity: sha512-Fg215/6hmNv64KqhMCwW5AvnJUFJ8TPsEkC+vFekliU8jRLAc4Cd+80klfagg+b0Jn1xyCndE+GEphdUAlxABA==}
+  discord.js@14.16.0-dev.1722600269-bb459d95e:
+    resolution: {integrity: sha512-uSAeeX3o/MPRjyz85vB4hswCmWL1vNVqdpY2WKnv4zwx5LUXC5UXQxaWfwOZfLYacgJOx4O/DlzfYcwCfWDksg==}
     engines: {node: '>=16.11.0'}
 
   doctrine@2.1.0:
@@ -4515,12 +4515,12 @@ snapshots:
       ts-mixer: 6.0.4
       tslib: 2.6.2
 
-  '@discordjs/builders@1.9.0-dev.1720743039-be04acd53':
+  '@discordjs/builders@1.9.0-dev.1722600277-bb459d95e':
     dependencies:
       '@discordjs/formatters': 0.4.0
       '@discordjs/util': 1.1.0
       '@sapphire/shapeshift': 3.9.7
-      discord-api-types: 0.37.90
+      discord-api-types: 0.37.93
       fast-deep-equal: 3.1.3
       ts-mixer: 6.0.4
       tslib: 2.6.2
@@ -6129,13 +6129,13 @@ snapshots:
 
   discord-api-types@0.37.83: {}
 
-  discord-api-types@0.37.90: {}
+  discord-api-types@0.37.93: {}
 
-  discord-api-types@0.37.92: {}
+  discord-api-types@0.37.93-next.588140c.1721481579: {}
 
   discord-hybrid-sharding@2.2.0: {}
 
-  discord.js@14.16.0-dev.1720915912-efa16a609(patch_hash=wh4fetiumk6vex6h2rjurdwv5e):
+  discord.js@14.16.0-dev.1722600269-bb459d95e(patch_hash=br3ngbp2a77oo54rrk6i4yidlm):
     dependencies:
       '@discordjs/builders': 1.8.2
       '@discordjs/collection': 1.5.3
@@ -6144,7 +6144,7 @@ snapshots:
       '@discordjs/util': 1.1.0
       '@discordjs/ws': 1.1.1
       '@sapphire/snowflake': 3.5.3
-      discord-api-types: 0.37.90
+      discord-api-types: 0.37.93
       fast-deep-equal: 3.1.3
       lodash.snakecase: 4.1.1
       tslib: 2.6.2
