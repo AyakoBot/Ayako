@@ -1060,6 +1060,28 @@ model commandUsage {
   @@index([guildId, userId])
 }
 
+model linkedRoles {
+  roleId          String @db.VarChar
+  uniquetimestamp String @db.VarChar
+  botId           String @unique @db.VarChar
+
+  tokens linkedRoleTokens[]
+
+  users String[]
+
+  @@id(uniquetimestamp)
+  @@index([roleId, botId, uniquetimestamp])
+}
+
+model linkedRoleTokens {
+  settings linkedRoles @relation(fields: [botId], references: [botId])
+  botId    String      @db.VarChar
+  userId   String      @db.VarChar
+  token    String      @db.VarChar // refresh token
+
+  @@id([botId, userId])
+}
+
 enum AutoPunishPunishmentType {
   warn
   kick
