@@ -1,3 +1,4 @@
+
 generator client {
   provider = "prisma-client-js"
 }
@@ -1055,29 +1056,30 @@ model commandUsage {
   userId    String  @default("0") @db.VarChar
   timestamp Decimal @db.Decimal
   type      Decimal @db.Decimal // 0 = string command, everything else = InteractionType
+  context   Decimal @default("0") @db.Decimal // 0 = guild install, 1 = user install
 
   @@id(timestamp)
   @@index([guildId, userId])
 }
 
-model linkedRoles {
-  roleId          String @db.VarChar
-  uniquetimestamp String @db.VarChar
-  botId           String @unique @db.VarChar
+model linkedRolesDeco {
+  roleId          String? @db.VarChar
+  uniquetimestamp Decimal @db.Decimal
+  guildid         String  @db.VarChar
+  allowedUsers    String[] @db.VarChar
 
-  tokens linkedRoleTokens[]
-
-  users String[]
+  botId           String? @db.VarChar
+  botSecret       String? @db.VarChar
+  botToken        String? @db.VarChar
 
   @@id(uniquetimestamp)
-  @@index([roleId, botId, uniquetimestamp])
+  @@index([uniquetimestamp])
 }
 
 model linkedRoleTokens {
-  settings linkedRoles @relation(fields: [botId], references: [botId])
-  botId    String      @db.VarChar
-  userId   String      @db.VarChar
-  token    String      @db.VarChar // refresh token
+  botId  String @db.VarChar
+  userId String @db.VarChar
+  token  String @db.VarChar // refresh token
 
   @@id([botId, userId])
 }
