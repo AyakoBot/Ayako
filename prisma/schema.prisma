@@ -1020,8 +1020,8 @@ model heartbeats {
   shard     Decimal @db.Decimal
   timestamp Decimal @db.Decimal
 
-  @@id([timestamp, shard])
-  @@index([shard])
+  @@id(shard)
+  @@index(shard)
 }
 
 model users {
@@ -1048,18 +1048,6 @@ model tokens {
   scopes       String[]
 
   @@id([userid, botid])
-}
-
-model commandUsage {
-  command   String  @db.VarChar
-  guildId   String? @db.VarChar
-  userId    String  @default("0") @db.VarChar
-  timestamp Decimal @db.Decimal
-  type      Decimal @db.Decimal // 0 = string command, everything else = InteractionType
-  context   Decimal @default("0") @db.Decimal // 0 = guild install, 1 = user install
-
-  @@id(timestamp)
-  @@index([guildId, userId])
 }
 
 model linkedRolesDeco {
