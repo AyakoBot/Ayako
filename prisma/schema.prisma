@@ -1072,6 +1072,21 @@ model linkedRoleTokens {
   @@id([botId, userId])
 }
 
+model noCommandsGuilds {
+ guildId String @db.VarChar
+
+ @@id(guildId)
+ @@index(guildId)
+}
+
+model blockingUsers {
+ userId String @db.VarChar
+ created Decimal @db.Decimal
+
+ @@id(userId)
+ @@index(userId)
+}
+
 enum AutoPunishPunishmentType {
   warn
   kick
@@ -1148,3 +1163,4 @@ enum AppealStatus {
   accepted
   rejected
 }
+
