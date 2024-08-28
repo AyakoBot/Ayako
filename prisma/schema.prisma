@@ -1087,6 +1087,15 @@ model blockingUsers {
  @@index(userId)
 }
 
+model awaitJoinCC {
+ botId String @db.VarChar
+ guildId String @db.VarChar
+
+
+ @@id(guildId)
+ @@index(botId)
+}
+
 enum AutoPunishPunishmentType {
   warn
   kick
