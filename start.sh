@@ -1,2 +1,2 @@
-./packages/Bot/start.sh
-./packages/Server/start.sh
+/root/Ayako/packages/Bot/start.sh
+/root/Ayako/packages/Server/start.sh

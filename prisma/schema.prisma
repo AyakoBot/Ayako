@@ -749,6 +749,7 @@ model stats {
   stickerCount Decimal @db.Decimal
   shardCount   Decimal @db.Decimal
   clusterCount Decimal @db.Decimal
+  userInstalls Decimal @db.Decimal
   timestamp    Decimal @db.Decimal
 
   @@id(timestamp)
