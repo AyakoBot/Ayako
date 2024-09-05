@@ -1,0 +1,941 @@
+{
+ "annotations": {
+  "list": [
+   {
+    "builtIn": 1,
+    "datasource": {
+     "type": "grafana",
+     "uid": "-- Grafana --"
+    },
+    "enable": true,
+    "hide": true,
+    "iconColor": "rgba(0, 211, 255, 1)",
+    "name": "Annotations & Alerts",
+    "type": "dashboard"
+   }
+  ]
+ },
+ "editable": true,
+ "fiscalYearStartMonth": 0,
+ "graphTooltip": 0,
+ "id": 8,
+ "links": [],
+ "panels": [
+  {
+   "gridPos": {
+    "h": 1,
+    "w": 24,
+    "x": 0,
+    "y": 0
+   },
+   "id": 13,
+   "title": "Commands",
+   "type": "row"
+  },
+  {
+   "datasource": {
+    "type": "prometheus",
+    "uid": "cdpj6ma4mq7swb"
+   },
+   "fieldConfig": {
+    "defaults": {
+     "color": {
+      "mode": "palette-classic"
+     },
+     "custom": {
+      "axisBorderShow": false,
+      "axisCenteredZero": false,
+      "axisColorMode": "text",
+      "axisLabel": "",
+      "axisPlacement": "auto",
+      "barAlignment": 0,
+      "drawStyle": "line",
+      "fillOpacity": 0,
+      "gradientMode": "none",
+      "hideFrom": {
+       "legend": false,
+       "tooltip": false,
+       "viz": false
+      },
+      "insertNulls": false,
+      "lineInterpolation": "linear",
+      "lineWidth": 1,
+      "pointSize": 5,
+      "scaleDistribution": {
+       "type": "linear"
+      },
+      "showPoints": "auto",
+      "spanNulls": false,
+      "stacking": {
+       "group": "A",
+       "mode": "none"
+      },
+      "thresholdsStyle": {
+       "mode": "off"
+      }
+     },
+     "mappings": [],
+     "thresholds": {
+      "mode": "absolute",
+      "steps": [
+       {
+        "color": "green",
+        "value": null
+       },
+       {
+        "color": "red",
+        "value": 80
+       }
+      ]
+     }
+    },
+    "overrides": []
+   },
+   "gridPos": {
+    "h": 11,
+    "w": 12,
+    "x": 0,
+    "y": 1
+   },
+   "id": 1,
+   "interval": "1m",
+   "options": {
+    "legend": {
+     "calcs": [],
+     "displayMode": "list",
+     "placement": "right",
+     "showLegend": true
+    },
+    "tooltip": {
+     "mode": "single",
+     "sort": "none"
+    }
+   },
+   "targets": [
+    {
+     "datasource": {
+      "type": "prometheus",
+      "uid": "cdpj6ma4mq7swb"
+     },
+     "disableTextWrap": false,
+     "editorMode": "code",
+     "expr": "sum by(type) (rate(ayako_command_executed{command=~\"$Command\", type=~\"$Type\", context=~\"$Context\"}[$__rate_interval]))",
+     "fullMetaSearch": false,
+     "includeNullMetadata": true,
+     "instant": false,
+     "legendFormat": "__auto",
+     "range": true,
+     "refId": "A",
+     "useBackend": false
+    }
+   ],
+   "title": "Commands by Type",
+   "type": "timeseries"
+  },
+  {
+   "datasource": {
+    "type": "prometheus",
+    "uid": "cdpj6ma4mq7swb"
+   },
+   "fieldConfig": {
+    "defaults": {
+     "color": {
+      "mode": "palette-classic"
+     },
+     "custom": {
+      "axisBorderShow": false,
+      "axisCenteredZero": false,
+      "axisColorMode": "text",
+      "axisLabel": "",
+      "axisPlacement": "auto",
+      "barAlignment": 0,
+      "drawStyle": "line",
+      "fillOpacity": 0,
+      "gradientMode": "none",
+      "hideFrom": {
+       "legend": false,
+       "tooltip": false,
+       "viz": false
+      },
+      "insertNulls": false,
+      "lineInterpolation": "linear",
+      "lineWidth": 1,
+      "pointSize": 5,
+      "scaleDistribution": {
+       "type": "linear"
+      },
+      "showPoints": "auto",
+      "spanNulls": false,
+      "stacking": {
+       "group": "A",
+       "mode": "none"
+      },
+      "thresholdsStyle": {
+       "mode": "off"
+      }
+     },
+     "mappings": [],
+     "thresholds": {
+      "mode": "absolute",
+      "steps": [
+       {
+        "color": "green",
+        "value": null
+       },
+       {
+        "color": "red",
+        "value": 80
+       }
+      ]
+     }
+    },
+    "overrides": []
+   },
+   "gridPos": {
+    "h": 11,
+    "w": 12,
+    "x": 12,
+    "y": 1
+   },
+   "id": 2,
+   "options": {
+    "legend": {
+     "calcs": [],
+     "displayMode": "list",
+     "placement": "right",
+     "showLegend": true
+    },
+    "tooltip": {
+     "mode": "single",
+     "sort": "none"
+    }
+   },
+   "targets": [
+    {
+     "datasource": {
+      "type": "prometheus",
+      "uid": "cdpj6ma4mq7swb"
+     },
+     "editorMode": "code",
+     "expr": "sum by(context) (rate(ayako_command_executed{command=~\"$Command\", type=~\"$Type\", context=~\"$Context\"}[$__rate_interval]))",
+     "instant": false,
+     "legendFormat": "__auto",
+     "range": true,
+     "refId": "A"
+    }
+   ],
+   "title": "Commands by Context",
+   "type": "timeseries"
+  },
+  {
+   "datasource": {
+    "type": "prometheus",
+    "uid": "cdpj6ma4mq7swb"
+   },
+   "fieldConfig": {
+    "defaults": {
+     "color": {
+      "mode": "palette-classic"
+     },
+     "custom": {
+      "axisBorderShow": false,
+      "axisCenteredZero": false,
+      "axisColorMode": "text",
+      "axisLabel": "",
+      "axisPlacement": "auto",
+      "barAlignment": 0,
+      "drawStyle": "line",
+      "fillOpacity": 0,
+      "gradientMode": "none",
+      "hideFrom": {
+       "legend": false,
+       "tooltip": false,
+       "viz": false
+      },
+      "insertNulls": false,
+      "lineInterpolation": "linear",
+      "lineWidth": 1,
+      "pointSize": 5,
+      "scaleDistribution": {
+       "type": "linear"
+      },
+      "showPoints": "auto",
+      "spanNulls": false,
+      "stacking": {
+       "group": "A",
+       "mode": "none"
+      },
+      "thresholdsStyle": {
+       "mode": "off"
+      }
+     },
+     "mappings": [],
+     "thresholds": {
+      "mode": "absolute",
+      "steps": [
+       {
+        "color": "green",
+        "value": null
+       },
+       {
+        "color": "red",
+        "value": 80
+       }
+      ]
+     }
+    },
+    "overrides": []
+   },
+   "gridPos": {
+    "h": 12,
+    "w": 24,
+    "x": 0,
+    "y": 12
+   },
+   "id": 3,
+   "options": {
+    "legend": {
+     "calcs": [],
+     "displayMode": "list",
+     "placement": "bottom",
+     "showLegend": false
+    },
+    "tooltip": {
+     "mode": "single",
+     "sort": "none"
+    }
+   },
+   "targets": [
+    {
+     "datasource": {
+      "type": "prometheus",
+      "uid": "cdpj6ma4mq7swb"
+     },
+     "editorMode": "code",
+     "expr": "sum by(command) (rate(ayako_command_executed{command=~\"$Command\", type=~\"$Type\", context=~\"$Context\"}[$__rate_interval]))",
+     "instant": false,
+     "legendFormat": "__auto",
+     "range": true,
+     "refId": "A"
+    }
+   ],
+   "title": "Commands",
+   "type": "timeseries"
+  },
+  {
+   "collapsed": false,
+   "gridPos": {
+    "h": 1,
+    "w": 24,
+    "x": 0,
+    "y": 24
+   },
+   "id": 12,
+   "panels": [],
+   "title": "Stats",
+   "type": "row"
+  },
+  {
+   "datasource": {
+    "type": "prometheus",
+    "uid": "cdpj6ma4mq7swb"
+   },
+   "fieldConfig": {
+    "defaults": {
+     "color": {
+      "mode": "thresholds"
+     },
+     "mappings": [],
+     "min": 5000,
+     "thresholds": {
+      "mode": "absolute",
+      "steps": [
+       {
+        "color": "green",
+        "value": null
+       }
+      ]
+     }
+    },
+    "overrides": []
+   },
+   "gridPos": {
+    "h": 5,
+    "w": 3,
+    "x": 0,
+    "y": 25
+   },
+   "id": 4,
+   "options": {
+    "colorMode": "value",
+    "graphMode": "area",
+    "justifyMode": "auto",
+    "orientation": "auto",
+    "percentChangeColorMode": "standard",
+    "reduceOptions": {
+     "calcs": ["lastNotNull"],
+     "fields": "",
+     "values": false
+    },
+    "showPercentChange": false,
+    "textMode": "auto",
+    "wideLayout": true
+   },
+   "pluginVersion": "11.1.0",
+   "targets": [
+    {
+     "datasource": {
+      "type": "prometheus",
+      "uid": "cdpj6ma4mq7swb"
+     },
+     "editorMode": "code",
+     "expr": "ayako_guild_count",
+     "instant": false,
+     "legendFormat": "__auto",
+     "range": true,
+     "refId": "A"
+    }
+   ],
+   "title": "Guilds",
+   "type": "stat"
+  },
+  {
+   "datasource": {
+    "type": "prometheus",
+    "uid": "cdpj6ma4mq7swb"
+   },
+   "fieldConfig": {
+    "defaults": {
+     "mappings": [],
+     "thresholds": {
+      "mode": "absolute",
+      "steps": [
+       {
+        "color": "green",
+        "value": null
+       }
+      ]
+     },
+     "unit": "short"
+    },
+    "overrides": []
+   },
+   "gridPos": {
+    "h": 5,
+    "w": 3,
+    "x": 3,
+    "y": 25
+   },
+   "id": 5,
+   "options": {
+    "colorMode": "value",
+    "graphMode": "area",
+    "justifyMode": "auto",
+    "orientation": "auto",
+    "percentChangeColorMode": "standard",
+    "reduceOptions": {
+     "calcs": ["lastNotNull"],
+     "fields": "",
+     "values": false
+    },
+    "showPercentChange": false,
+    "textMode": "auto",
+    "wideLayout": true
+   },
+   "pluginVersion": "11.1.0",
+   "targets": [
+    {
+     "datasource": {
+      "type": "prometheus",
+      "uid": "cdpj6ma4mq7swb"
+     },
+     "editorMode": "code",
+     "expr": "ayako_user_count",
+     "instant": false,
+     "legendFormat": "__auto",
+     "range": true,
+     "refId": "A"
+    }
+   ],
+   "title": "Users",
+   "type": "stat"
+  },
+  {
+   "datasource": {
+    "type": "prometheus",
+    "uid": "cdpj6ma4mq7swb"
+   },
+   "fieldConfig": {
+    "defaults": {
+     "mappings": [],
+     "thresholds": {
+      "mode": "absolute",
+      "steps": [
+       {
+        "color": "green",
+        "value": null
+       }
+      ]
+     },
+     "unit": "short"
+    },
+    "overrides": []
+   },
+   "gridPos": {
+    "h": 5,
+    "w": 3,
+    "x": 6,
+    "y": 25
+   },
+   "id": 6,
+   "options": {
+    "colorMode": "value",
+    "graphMode": "area",
+    "justifyMode": "auto",
+    "orientation": "auto",
+    "percentChangeColorMode": "standard",
+    "reduceOptions": {
+     "calcs": ["lastNotNull"],
+     "fields": "",
+     "values": false
+    },
+    "showPercentChange": false,
+    "textMode": "auto",
+    "wideLayout": true
+   },
+   "pluginVersion": "11.1.0",
+   "targets": [
+    {
+     "datasource": {
+      "type": "prometheus",
+      "uid": "cdpj6ma4mq7swb"
+     },
+     "editorMode": "code",
+     "expr": "ayako_emoji_count",
+     "instant": false,
+     "legendFormat": "__auto",
+     "range": true,
+     "refId": "A"
+    }
+   ],
+   "title": "Emojis",
+   "type": "stat"
+  },
+  {
+   "datasource": {
+    "type": "prometheus",
+    "uid": "cdpj6ma4mq7swb"
+   },
+   "fieldConfig": {
+    "defaults": {
+     "mappings": [],
+     "thresholds": {
+      "mode": "absolute",
+      "steps": [
+       {
+        "color": "green",
+        "value": null
+       }
+      ]
+     },
+     "unit": "short"
+    },
+    "overrides": []
+   },
+   "gridPos": {
+    "h": 5,
+    "w": 3,
+    "x": 9,
+    "y": 25
+   },
+   "id": 7,
+   "options": {
+    "colorMode": "value",
+    "graphMode": "area",
+    "justifyMode": "auto",
+    "orientation": "auto",
+    "percentChangeColorMode": "standard",
+    "reduceOptions": {
+     "calcs": ["lastNotNull"],
+     "fields": "",
+     "values": false
+    },
+    "showPercentChange": false,
+    "textMode": "auto",
+    "wideLayout": true
+   },
+   "pluginVersion": "11.1.0",
+   "targets": [
+    {
+     "datasource": {
+      "type": "prometheus",
+      "uid": "cdpj6ma4mq7swb"
+     },
+     "editorMode": "code",
+     "expr": "ayako_role_count",
+     "instant": false,
+     "legendFormat": "__auto",
+     "range": true,
+     "refId": "A"
+    }
+   ],
+   "title": "Roles",
+   "type": "stat"
+  },
+  {
+   "datasource": {
+    "type": "prometheus",
+    "uid": "cdpj6ma4mq7swb"
+   },
+   "fieldConfig": {
+    "defaults": {
+     "mappings": [],
+     "thresholds": {
+      "mode": "absolute",
+      "steps": [
+       {
+        "color": "green",
+        "value": null
+       }
+      ]
+     },
+     "unit": "short"
+    },
+    "overrides": []
+   },
+   "gridPos": {
+    "h": 5,
+    "w": 3,
+    "x": 12,
+    "y": 25
+   },
+   "id": 8,
+   "options": {
+    "colorMode": "value",
+    "graphMode": "area",
+    "justifyMode": "auto",
+    "orientation": "auto",
+    "percentChangeColorMode": "standard",
+    "reduceOptions": {
+     "calcs": ["lastNotNull"],
+     "fields": "",
+     "values": false
+    },
+    "showPercentChange": false,
+    "textMode": "auto",
+    "wideLayout": true
+   },
+   "pluginVersion": "11.1.0",
+   "targets": [
+    {
+     "datasource": {
+      "type": "prometheus",
+      "uid": "cdpj6ma4mq7swb"
+     },
+     "editorMode": "code",
+     "expr": "ayako_channel_count",
+     "instant": false,
+     "legendFormat": "__auto",
+     "range": true,
+     "refId": "A"
+    }
+   ],
+   "title": "Channels",
+   "type": "stat"
+  },
+  {
+   "datasource": {
+    "type": "prometheus",
+    "uid": "cdpj6ma4mq7swb"
+   },
+   "fieldConfig": {
+    "defaults": {
+     "color": {
+      "mode": "thresholds"
+     },
+     "mappings": [],
+     "thresholds": {
+      "mode": "absolute",
+      "steps": [
+       {
+        "color": "green",
+        "value": null
+       },
+       {
+        "color": "red",
+        "value": 80
+       }
+      ]
+     }
+    },
+    "overrides": []
+   },
+   "gridPos": {
+    "h": 5,
+    "w": 3,
+    "x": 15,
+    "y": 25
+   },
+   "id": 9,
+   "options": {
+    "colorMode": "value",
+    "graphMode": "area",
+    "justifyMode": "auto",
+    "orientation": "auto",
+    "percentChangeColorMode": "standard",
+    "reduceOptions": {
+     "calcs": ["lastNotNull"],
+     "fields": "",
+     "values": false
+    },
+    "showPercentChange": false,
+    "textMode": "auto",
+    "wideLayout": true
+   },
+   "pluginVersion": "11.1.0",
+   "targets": [
+    {
+     "datasource": {
+      "type": "prometheus",
+      "uid": "cdpj6ma4mq7swb"
+     },
+     "editorMode": "code",
+     "expr": "ayako_sticker_count",
+     "instant": false,
+     "legendFormat": "__auto",
+     "range": true,
+     "refId": "A"
+    }
+   ],
+   "title": "Stickers",
+   "type": "stat"
+  },
+  {
+   "datasource": {
+    "type": "prometheus",
+    "uid": "cdpj6ma4mq7swb"
+   },
+   "fieldConfig": {
+    "defaults": {
+     "color": {
+      "mode": "thresholds"
+     },
+     "mappings": [],
+     "thresholds": {
+      "mode": "absolute",
+      "steps": [
+       {
+        "color": "green",
+        "value": null
+       }
+      ]
+     }
+    },
+    "overrides": []
+   },
+   "gridPos": {
+    "h": 5,
+    "w": 3,
+    "x": 18,
+    "y": 25
+   },
+   "id": 10,
+   "options": {
+    "colorMode": "value",
+    "graphMode": "area",
+    "justifyMode": "auto",
+    "orientation": "auto",
+    "percentChangeColorMode": "standard",
+    "reduceOptions": {
+     "calcs": ["lastNotNull"],
+     "fields": "",
+     "values": false
+    },
+    "showPercentChange": false,
+    "textMode": "auto",
+    "wideLayout": true
+   },
+   "pluginVersion": "11.1.0",
+   "targets": [
+    {
+     "datasource": {
+      "type": "prometheus",
+      "uid": "cdpj6ma4mq7swb"
+     },
+     "editorMode": "code",
+     "expr": "ayako_cluster_count",
+     "instant": false,
+     "legendFormat": "__auto",
+     "range": true,
+     "refId": "A"
+    }
+   ],
+   "title": "Clusters",
+   "type": "stat"
+  },
+  {
+   "datasource": {
+    "type": "prometheus",
+    "uid": "cdpj6ma4mq7swb"
+   },
+   "fieldConfig": {
+    "defaults": {
+     "color": {
+      "mode": "thresholds"
+     },
+     "mappings": [],
+     "thresholds": {
+      "mode": "absolute",
+      "steps": [
+       {
+        "color": "green",
+        "value": null
+       },
+       {
+        "color": "red",
+        "value": 80
+       }
+      ]
+     }
+    },
+    "overrides": []
+   },
+   "gridPos": {
+    "h": 5,
+    "w": 3,
+    "x": 21,
+    "y": 25
+   },
+   "id": 11,
+   "options": {
+    "colorMode": "value",
+    "graphMode": "area",
+    "justifyMode": "auto",
+    "orientation": "auto",
+    "percentChangeColorMode": "standard",
+    "reduceOptions": {
+     "calcs": ["lastNotNull"],
+     "fields": "",
+     "values": false
+    },
+    "showPercentChange": false,
+    "textMode": "auto",
+    "wideLayout": true
+   },
+   "pluginVersion": "11.1.0",
+   "targets": [
+    {
+     "datasource": {
+      "type": "prometheus",
+      "uid": "cdpj6ma4mq7swb"
+     },
+     "editorMode": "code",
+     "expr": "ayako_shard_count",
+     "instant": false,
+     "legendFormat": "__auto",
+     "range": true,
+     "refId": "A"
+    }
+   ],
+   "title": "Shards",
+   "type": "stat"
+  }
+ ],
+ "schemaVersion": 39,
+ "tags": [],
+ "templating": {
+  "list": [
+   {
+    "current": {
+     "selected": true,
+     "text": ["All"],
+     "value": ["$__all"]
+    },
+    "datasource": {
+     "type": "prometheus",
+     "uid": "cdpj6ma4mq7swb"
+    },
+    "definition": "label_values(command)",
+    "hide": 0,
+    "includeAll": true,
+    "multi": true,
+    "name": "Command",
+    "options": [],
+    "query": {
+     "qryType": 1,
+     "query": "label_values(command)",
+     "refId": "PrometheusVariableQueryEditor-VariableQuery"
+    },
+    "refresh": 1,
+    "regex": "",
+    "skipUrlSync": false,
+    "sort": 0,
+    "type": "query"
+   },
+   {
+    "current": {
+     "selected": true,
+     "text": ["All"],
+     "value": ["$__all"]
+    },
+    "datasource": {
+     "type": "prometheus",
+     "uid": "cdpj6ma4mq7swb"
+    },
+    "definition": "label_values(type)",
+    "hide": 0,
+    "includeAll": true,
+    "multi": true,
+    "name": "Type",
+    "options": [],
+    "query": {
+     "qryType": 1,
+     "query": "label_values(type)",
+     "refId": "PrometheusVariableQueryEditor-VariableQuery"
+    },
+    "refresh": 1,
+    "regex": "",
+    "skipUrlSync": false,
+    "sort": 0,
+    "type": "query"
+   },
+   {
+    "current": {
+     "selected": true,
+     "text": ["All"],
+     "value": ["$__all"]
+    },
+    "datasource": {
+     "type": "prometheus",
+     "uid": "cdpj6ma4mq7swb"
+    },
+    "definition": "label_values(context)",
+    "hide": 0,
+    "includeAll": true,
+    "multi": true,
+    "name": "Context",
+    "options": [],
+    "query": {
+     "qryType": 1,
+     "query": "label_values(context)",
+     "refId": "PrometheusVariableQueryEditor-VariableQuery"
+    },
+    "refresh": 1,
+    "regex": "",
+    "skipUrlSync": false,
+    "sort": 0,
+    "type": "query"
+   }
+  ]
+ },
+ "time": {
+  "from": "now-6h",
+  "to": "now"
+ },
+ "timepicker": {},
+ "timezone": "browser",
+ "title": "Ayako Stats",
+ "uid": "edvq4nzv73eo0a",
+ "version": 9,
+ "weekStart": ""
+}

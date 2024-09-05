@@ -1,0 +1,548 @@
+{
+ "annotations": {
+  "list": [
+   {
+    "builtIn": 1,
+    "datasource": {
+     "type": "grafana",
+     "uid": "-- Grafana --"
+    },
+    "enable": true,
+    "hide": true,
+    "iconColor": "rgba(0, 211, 255, 1)",
+    "name": "Annotations & Alerts",
+    "type": "dashboard"
+   }
+  ]
+ },
+ "editable": true,
+ "fiscalYearStartMonth": 0,
+ "graphTooltip": 0,
+ "id": 5,
+ "links": [],
+ "panels": [
+  {
+   "datasource": {
+    "type": "prometheus",
+    "uid": "cdpj6ma4mq7swb"
+   },
+   "fieldConfig": {
+    "defaults": {
+     "color": {
+      "mode": "palette-classic"
+     },
+     "custom": {
+      "axisBorderShow": false,
+      "axisCenteredZero": false,
+      "axisColorMode": "text",
+      "axisLabel": "",
+      "axisPlacement": "auto",
+      "barAlignment": 0,
+      "drawStyle": "line",
+      "fillOpacity": 0,
+      "gradientMode": "none",
+      "hideFrom": {
+       "legend": false,
+       "tooltip": false,
+       "viz": false
+      },
+      "insertNulls": false,
+      "lineInterpolation": "linear",
+      "lineWidth": 1,
+      "pointSize": 5,
+      "scaleDistribution": {
+       "type": "linear"
+      },
+      "showPoints": "auto",
+      "spanNulls": false,
+      "stacking": {
+       "group": "A",
+       "mode": "none"
+      },
+      "thresholdsStyle": {
+       "mode": "off"
+      }
+     },
+     "mappings": [],
+     "thresholds": {
+      "mode": "absolute",
+      "steps": [
+       {
+        "color": "green",
+        "value": null
+       },
+       {
+        "color": "red",
+        "value": 80
+       }
+      ]
+     },
+     "unit": "eps"
+    },
+    "overrides": []
+   },
+   "gridPos": {
+    "h": 13,
+    "w": 24,
+    "x": 0,
+    "y": 0
+   },
+   "id": 1,
+   "options": {
+    "legend": {
+     "calcs": ["mean"],
+     "displayMode": "table",
+     "placement": "right",
+     "showLegend": true,
+     "sortBy": "Mean",
+     "sortDesc": true
+    },
+    "tooltip": {
+     "mode": "single",
+     "sort": "none"
+    }
+   },
+   "targets": [
+    {
+     "datasource": {
+      "type": "prometheus",
+      "uid": "a9228c46-f720-4d98-bd7f-9e9ad951a395"
+     },
+     "disableTextWrap": false,
+     "editorMode": "code",
+     "expr": "sum by(eventType) (rate(ayako_gateway_dispatch_events{clientName=~\"$clientName\",shard=~\"$shardId\"}[$__rate_interval]))",
+     "fullMetaSearch": false,
+     "includeNullMetadata": false,
+     "instant": false,
+     "legendFormat": "{{eventType}}",
+     "range": true,
+     "refId": "A",
+     "useBackend": false
+    }
+   ],
+   "title": "Gateway Events",
+   "type": "timeseries"
+  },
+  {
+   "datasource": {
+    "type": "prometheus",
+    "uid": "cdpj6ma4mq7swb"
+   },
+   "fieldConfig": {
+    "defaults": {
+     "color": {
+      "mode": "palette-classic"
+     },
+     "custom": {
+      "axisBorderShow": false,
+      "axisCenteredZero": false,
+      "axisColorMode": "text",
+      "axisLabel": "",
+      "axisPlacement": "auto",
+      "barAlignment": 0,
+      "drawStyle": "line",
+      "fillOpacity": 0,
+      "gradientMode": "none",
+      "hideFrom": {
+       "legend": false,
+       "tooltip": false,
+       "viz": false
+      },
+      "insertNulls": false,
+      "lineInterpolation": "linear",
+      "lineWidth": 1,
+      "pointSize": 5,
+      "scaleDistribution": {
+       "type": "linear"
+      },
+      "showPoints": "auto",
+      "spanNulls": false,
+      "stacking": {
+       "group": "A",
+       "mode": "none"
+      },
+      "thresholdsStyle": {
+       "mode": "off"
+      }
+     },
+     "mappings": [],
+     "thresholds": {
+      "mode": "absolute",
+      "steps": [
+       {
+        "color": "green",
+        "value": null
+       },
+       {
+        "color": "red",
+        "value": 80
+       }
+      ]
+     },
+     "unit": "eps"
+    },
+    "overrides": []
+   },
+   "gridPos": {
+    "h": 9,
+    "w": 24,
+    "x": 0,
+    "y": 13
+   },
+   "id": 2,
+   "options": {
+    "legend": {
+     "calcs": [],
+     "displayMode": "list",
+     "placement": "bottom",
+     "showLegend": true
+    },
+    "tooltip": {
+     "mode": "single",
+     "sort": "none"
+    }
+   },
+   "targets": [
+    {
+     "datasource": {
+      "type": "prometheus",
+      "uid": "a9228c46-f720-4d98-bd7f-9e9ad951a395"
+     },
+     "disableTextWrap": false,
+     "editorMode": "code",
+     "expr": "sum by(clientName) (rate(ayako_gateway_dispatch_events{clientName=~\"$clientName\", shard=~\"$shardId\"}[$__rate_interval]))",
+     "fullMetaSearch": false,
+     "includeNullMetadata": true,
+     "instant": false,
+     "legendFormat": "__auto",
+     "range": true,
+     "refId": "A",
+     "useBackend": false
+    },
+    {
+     "datasource": {
+      "type": "prometheus",
+      "uid": "a9228c46-f720-4d98-bd7f-9e9ad951a395"
+     },
+     "editorMode": "code",
+     "expr": "sum (rate(ayako_gateway_dispatch_events{clientName=~\"$clientName\", shard=~\"$shardId\"}[$__rate_interval]))",
+     "hide": false,
+     "instant": false,
+     "legendFormat": "Total",
+     "range": true,
+     "refId": "B"
+    }
+   ],
+   "title": "Total Gateway Events",
+   "type": "timeseries"
+  },
+  {
+   "datasource": {
+    "type": "prometheus",
+    "uid": "cdpj6ma4mq7swb"
+   },
+   "fieldConfig": {
+    "defaults": {
+     "color": {
+      "mode": "palette-classic"
+     },
+     "custom": {
+      "axisBorderShow": false,
+      "axisCenteredZero": false,
+      "axisColorMode": "text",
+      "axisLabel": "",
+      "axisPlacement": "auto",
+      "barAlignment": 0,
+      "drawStyle": "line",
+      "fillOpacity": 0,
+      "gradientMode": "none",
+      "hideFrom": {
+       "legend": false,
+       "tooltip": false,
+       "viz": false
+      },
+      "insertNulls": false,
+      "lineInterpolation": "linear",
+      "lineWidth": 1,
+      "pointSize": 5,
+      "scaleDistribution": {
+       "type": "linear"
+      },
+      "showPoints": "auto",
+      "spanNulls": false,
+      "stacking": {
+       "group": "A",
+       "mode": "none"
+      },
+      "thresholdsStyle": {
+       "mode": "off"
+      }
+     },
+     "mappings": [],
+     "thresholds": {
+      "mode": "absolute",
+      "steps": [
+       {
+        "color": "green",
+        "value": null
+       },
+       {
+        "color": "red",
+        "value": 80
+       }
+      ]
+     },
+     "unit": "epm"
+    },
+    "overrides": []
+   },
+   "gridPos": {
+    "h": 11,
+    "w": 24,
+    "x": 0,
+    "y": 22
+   },
+   "id": 6,
+   "interval": "1m",
+   "options": {
+    "legend": {
+     "calcs": [],
+     "displayMode": "list",
+     "placement": "bottom",
+     "showLegend": true
+    },
+    "tooltip": {
+     "mode": "single",
+     "sort": "none"
+    }
+   },
+   "targets": [
+    {
+     "datasource": {
+      "type": "prometheus",
+      "uid": "a9228c46-f720-4d98-bd7f-9e9ad951a395"
+     },
+     "disableTextWrap": false,
+     "editorMode": "code",
+     "expr": "sum by(opCode) (rate(ayako_gateway_shard_receive_events{clientName=~\"$clientName\", shard=~\"$shardId\"}[$__rate_interval])) * 60",
+     "fullMetaSearch": false,
+     "includeNullMetadata": true,
+     "instant": false,
+     "legendFormat": "{{opCode}}",
+     "range": true,
+     "refId": "A",
+     "useBackend": false
+    }
+   ],
+   "title": "Shard Events Received",
+   "transformations": [
+    {
+     "id": "renameByRegex",
+     "options": {
+      "regex": "1",
+      "renamePattern": "Heartbeat"
+     }
+    },
+    {
+     "id": "renameByRegex",
+     "options": {
+      "regex": "7",
+      "renamePattern": "Reconnect"
+     }
+    },
+    {
+     "id": "renameByRegex",
+     "options": {
+      "regex": "9",
+      "renamePattern": "Invalid Session"
+     }
+    },
+    {
+     "id": "renameByRegex",
+     "options": {
+      "regex": "10",
+      "renamePattern": "Hello"
+     }
+    },
+    {
+     "id": "renameByRegex",
+     "options": {
+      "regex": "11",
+      "renamePattern": "Heartbeat ACK"
+     }
+    }
+   ],
+   "type": "timeseries"
+  },
+  {
+   "datasource": {
+    "type": "prometheus",
+    "uid": "cdpj6ma4mq7swb"
+   },
+   "fieldConfig": {
+    "defaults": {
+     "color": {
+      "mode": "palette-classic"
+     },
+     "custom": {
+      "axisBorderShow": false,
+      "axisCenteredZero": false,
+      "axisColorMode": "text",
+      "axisLabel": "",
+      "axisPlacement": "auto",
+      "barAlignment": 0,
+      "drawStyle": "line",
+      "fillOpacity": 0,
+      "gradientMode": "none",
+      "hideFrom": {
+       "legend": false,
+       "tooltip": false,
+       "viz": false
+      },
+      "insertNulls": false,
+      "lineInterpolation": "linear",
+      "lineWidth": 1,
+      "pointSize": 5,
+      "scaleDistribution": {
+       "type": "linear"
+      },
+      "showPoints": "auto",
+      "spanNulls": false,
+      "stacking": {
+       "group": "A",
+       "mode": "none"
+      },
+      "thresholdsStyle": {
+       "mode": "off"
+      }
+     },
+     "mappings": [],
+     "thresholds": {
+      "mode": "absolute",
+      "steps": [
+       {
+        "color": "green"
+       },
+       {
+        "color": "red",
+        "value": 80
+       }
+      ]
+     },
+     "unit": "ms"
+    },
+    "overrides": []
+   },
+   "gridPos": {
+    "h": 11,
+    "w": 24,
+    "x": 0,
+    "y": 33
+   },
+   "id": 3,
+   "options": {
+    "legend": {
+     "calcs": [],
+     "displayMode": "list",
+     "placement": "bottom",
+     "showLegend": true
+    },
+    "tooltip": {
+     "mode": "single",
+     "sort": "none"
+    }
+   },
+   "targets": [
+    {
+     "datasource": {
+      "type": "prometheus",
+      "uid": "a9228c46-f720-4d98-bd7f-9e9ad951a395"
+     },
+     "disableTextWrap": false,
+     "editorMode": "code",
+     "expr": "ayako_gateway_shard_latency{clientName=~\"$clientName\", shard=~\"$shardId\"}",
+     "fullMetaSearch": false,
+     "includeNullMetadata": true,
+     "instant": false,
+     "legendFormat": "Shard {{shard}}",
+     "range": true,
+     "refId": "A",
+     "useBackend": false
+    }
+   ],
+   "title": "Shard Latency",
+   "type": "timeseries"
+  }
+ ],
+ "refresh": "5s",
+ "schemaVersion": 39,
+ "tags": [],
+ "templating": {
+  "list": [
+   {
+    "current": {
+     "selected": true,
+     "text": ["All"],
+     "value": ["$__all"]
+    },
+    "datasource": {
+     "type": "prometheus",
+     "uid": "cdpj6ma4mq7swb"
+    },
+    "definition": "label_values(clientName)",
+    "hide": 0,
+    "includeAll": true,
+    "multi": true,
+    "name": "clientName",
+    "options": [],
+    "query": {
+     "qryType": 1,
+     "query": "label_values(clientName)",
+     "refId": "PrometheusVariableQueryEditor-VariableQuery"
+    },
+    "refresh": 1,
+    "regex": "",
+    "skipUrlSync": false,
+    "sort": 0,
+    "type": "query"
+   },
+   {
+    "current": {
+     "selected": true,
+     "text": ["All"],
+     "value": ["$__all"]
+    },
+    "datasource": {
+     "type": "prometheus",
+     "uid": "cdpj6ma4mq7swb"
+    },
+    "definition": "label_values(shard)",
+    "hide": 0,
+    "includeAll": true,
+    "multi": true,
+    "name": "shardId",
+    "options": [],
+    "query": {
+     "qryType": 1,
+     "query": "label_values(shard)",
+     "refId": "PrometheusVariableQueryEditor-VariableQuery"
+    },
+    "refresh": 1,
+    "regex": "",
+    "skipUrlSync": false,
+    "sort": 3,
+    "type": "query"
+   }
+  ]
+ },
+ "time": {
+  "from": "now-1h",
+  "to": "now"
+ },
+ "timepicker": {},
+ "timezone": "browser",
+ "title": "Ayako Gateway",
+ "uid": "bdth1xe53jz7ka",
+ "version": 19,
+ "weekStart": ""
+}

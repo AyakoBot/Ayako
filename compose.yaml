@@ -1,0 +1,115 @@
+services:
+ redis:
+  image: redis:7.4
+  restart: unless-stopped
+
+ postgres:
+  image: postgres:16.4
+  restart: unless-stopped
+  environment:
+   POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+  ports:
+   - "5432:5432"
+  volumes:
+   - db-data:/var/lib/postgresql/data
+
+ nirn:
+  image: ghcr.io/germanoeich/nirn-proxy:v1.3.3
+  restart: unless-stopped
+  environment:
+   REQUEST_TIMEOUT: 15000
+
+ # ayako:
+ #  build:
+ #   context: .
+ #   dockerfile: ./packages/Bot/Dockerfile
+ #  working_dir: /app/packages/Bot
+ #  command: ["pnpm", "dev"]
+ #  restart: unless-stopped
+ #  depends_on:
+ #   - postgres
+ #   - redis
+ #   - nirn
+ #  env_file:
+ #   - ./packages/Bot/.env
+ #  volumes:
+ #   - .:/app
+
+ api:
+  build:
+   context: .
+   dockerfile: ./packages/Server/Dockerfile
+  command: ["pnpm", "start"]
+  working_dir: /app/packages/Server
+  restart: unless-stopped
+  depends_on:
+   - postgres
+   - redis
+
+ psqlExporter:
+  image: quay.io/prometheuscommunity/postgres-exporter
+  restart: unless-stopped
+  environment:
+   DATA_SOURCE_URI: "postgres:5432/postgres?sslmode=disable"
+   DATA_SOURCE_USER: ${DATABASE_USER_READONLY}
+   DATA_SOURCE_PASS: ${DATABASE_PASSWORD}
+  depends_on:
+   - postgres
+
+ cloudflared:
+  image: cloudflare/cloudflared:latest
+  command: tunnel --no-autoupdate run --token ${CLOUDFLARE_TOKEN}
+  restart: unless-stopped
+
+ # Kiyu:
+ #   image: node:22
+ #   restart: unless-stopped
+ #   depends_on:
+ #     - postgres
+ #   command: sh -c "npm i -g pnpm && pnpm i && pnpx prisma db push && pnpm start"
+
+ # CC:
+ #   image: node:22
+ #   restart: unless-stopped
+ #   depends_on:
+ #     - postgres
+ #   command: sh -c "npm i -g pnpm && pnpm i && pnpx prisma db push && pnpm start"
+
+ # Kitten-PayPal:
+ #   image: node:22
+ #   restart: unless-stopped
+ #   depends_on:
+ #     - postgres
+ #   command: sh -c "npm i -g pnpm && pnpm i && pnpx prisma db push && pnpm start"
+
+ # Reiko:
+ #   image: node:22
+ #   restart: unless-stopped
+ #   depends_on:
+ #     - postgres
+ #   command: sh -c "npm i -g pnpm && pnpm i && pnpx prisma db push && pnpm start"
+
+ grafana:
+  image: grafana/grafana:latest
+  restart: unless-stopped
+  depends_on:
+   - prometheus
+  volumes:
+   - grafana-data:/var/lib/grafana
+   - ./metrics/dashboards:/etc/grafana/provisioning/dashboards
+   - ./metrics/datasources:/etc/grafana/provisioning/datasources
+
+ prometheus:
+  build:
+   context: .
+   dockerfile: ./Dockerfile
+  entrypoint: ["./metrics/entrypoint.sh"]
+  restart: unless-stopped
+  volumes:
+   - prometheus-data:/prometheus
+   - ./metrics/prometheus.yml:/etc/prometheus/prometheus.yml
+
+volumes:
+ db-data:
+ grafana-data:
+ prometheus-data:

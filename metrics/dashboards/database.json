@@ -1,0 +1,582 @@
+{
+ "annotations": {
+  "list": [
+   {
+    "builtIn": 1,
+    "datasource": {
+     "type": "grafana",
+     "uid": "-- Grafana --"
+    },
+    "enable": true,
+    "hide": true,
+    "iconColor": "rgba(0, 211, 255, 1)",
+    "name": "Annotations & Alerts",
+    "type": "dashboard"
+   }
+  ]
+ },
+ "editable": true,
+ "fiscalYearStartMonth": 0,
+ "graphTooltip": 0,
+ "id": 6,
+ "links": [],
+ "panels": [
+  {
+   "datasource": {
+    "type": "prometheus",
+    "uid": "cdpj6ma4mq7swb"
+   },
+   "fieldConfig": {
+    "defaults": {
+     "color": {
+      "mode": "palette-classic"
+     },
+     "custom": {
+      "axisBorderShow": false,
+      "axisCenteredZero": false,
+      "axisColorMode": "text",
+      "axisLabel": "",
+      "axisPlacement": "auto",
+      "barAlignment": 0,
+      "drawStyle": "line",
+      "fillOpacity": 0,
+      "gradientMode": "none",
+      "hideFrom": {
+       "legend": false,
+       "tooltip": false,
+       "viz": false
+      },
+      "insertNulls": false,
+      "lineInterpolation": "linear",
+      "lineWidth": 1,
+      "pointSize": 5,
+      "scaleDistribution": {
+       "type": "linear"
+      },
+      "showPoints": "auto",
+      "spanNulls": false,
+      "stacking": {
+       "group": "A",
+       "mode": "none"
+      },
+      "thresholdsStyle": {
+       "mode": "off"
+      }
+     },
+     "mappings": [],
+     "thresholds": {
+      "mode": "absolute",
+      "steps": [
+       {
+        "color": "green",
+        "value": null
+       },
+       {
+        "color": "red",
+        "value": 80
+       }
+      ]
+     },
+     "unit": "ms"
+    },
+    "overrides": []
+   },
+   "gridPos": {
+    "h": 14,
+    "w": 12,
+    "x": 0,
+    "y": 0
+   },
+   "id": 4,
+   "options": {
+    "legend": {
+     "calcs": [],
+     "displayMode": "list",
+     "placement": "right",
+     "showLegend": true
+    },
+    "tooltip": {
+     "mode": "single",
+     "sort": "none"
+    }
+   },
+   "targets": [
+    {
+     "datasource": {
+      "type": "prometheus",
+      "uid": "cdpj6ma4mq7swb"
+     },
+     "editorMode": "code",
+     "expr": "sum by(action) (ayako_db_query_latency{modelName=~\"$modelName\",action=~\"$action\"})",
+     "format": "time_series",
+     "instant": false,
+     "legendFormat": "{{action}}",
+     "range": true,
+     "refId": "A"
+    }
+   ],
+   "title": "Latency by action",
+   "type": "timeseries"
+  },
+  {
+   "datasource": {
+    "type": "prometheus",
+    "uid": "cdpj6ma4mq7swb"
+   },
+   "fieldConfig": {
+    "defaults": {
+     "color": {
+      "mode": "palette-classic"
+     },
+     "custom": {
+      "axisBorderShow": false,
+      "axisCenteredZero": false,
+      "axisColorMode": "text",
+      "axisLabel": "",
+      "axisPlacement": "auto",
+      "barAlignment": 0,
+      "drawStyle": "line",
+      "fillOpacity": 0,
+      "gradientMode": "none",
+      "hideFrom": {
+       "legend": false,
+       "tooltip": false,
+       "viz": false
+      },
+      "insertNulls": false,
+      "lineInterpolation": "linear",
+      "lineWidth": 1,
+      "pointSize": 5,
+      "scaleDistribution": {
+       "type": "linear"
+      },
+      "showPoints": "auto",
+      "spanNulls": false,
+      "stacking": {
+       "group": "A",
+       "mode": "none"
+      },
+      "thresholdsStyle": {
+       "mode": "off"
+      }
+     },
+     "mappings": [],
+     "thresholds": {
+      "mode": "absolute",
+      "steps": [
+       {
+        "color": "green",
+        "value": null
+       },
+       {
+        "color": "red",
+        "value": 80
+       }
+      ]
+     },
+     "unit": "ms"
+    },
+    "overrides": []
+   },
+   "gridPos": {
+    "h": 14,
+    "w": 12,
+    "x": 12,
+    "y": 0
+   },
+   "id": 5,
+   "options": {
+    "legend": {
+     "calcs": [],
+     "displayMode": "hidden",
+     "placement": "right",
+     "showLegend": false
+    },
+    "tooltip": {
+     "mode": "single",
+     "sort": "none"
+    }
+   },
+   "pluginVersion": "11.1.0",
+   "targets": [
+    {
+     "datasource": {
+      "type": "prometheus",
+      "uid": "cdpj6ma4mq7swb"
+     },
+     "editorMode": "code",
+     "expr": "sum by(modelName) (ayako_db_query_latency{modelName=~\"$modelName\",action=~\"$action\"})",
+     "instant": false,
+     "legendFormat": "{{modelName}}",
+     "range": true,
+     "refId": "A"
+    }
+   ],
+   "title": "Latency by model",
+   "type": "timeseries"
+  },
+  {
+   "datasource": {
+    "type": "prometheus",
+    "uid": "cdpj6ma4mq7swb"
+   },
+   "fieldConfig": {
+    "defaults": {
+     "color": {
+      "mode": "palette-classic"
+     },
+     "custom": {
+      "axisBorderShow": false,
+      "axisCenteredZero": false,
+      "axisColorMode": "text",
+      "axisLabel": "",
+      "axisPlacement": "auto",
+      "barAlignment": 0,
+      "drawStyle": "line",
+      "fillOpacity": 0,
+      "gradientMode": "none",
+      "hideFrom": {
+       "legend": false,
+       "tooltip": false,
+       "viz": false
+      },
+      "insertNulls": false,
+      "lineInterpolation": "linear",
+      "lineWidth": 1,
+      "pointSize": 5,
+      "scaleDistribution": {
+       "type": "linear"
+      },
+      "showPoints": "auto",
+      "spanNulls": false,
+      "stacking": {
+       "group": "A",
+       "mode": "none"
+      },
+      "thresholdsStyle": {
+       "mode": "off"
+      }
+     },
+     "mappings": [],
+     "thresholds": {
+      "mode": "absolute",
+      "steps": [
+       {
+        "color": "green",
+        "value": null
+       },
+       {
+        "color": "red",
+        "value": 80
+       }
+      ]
+     },
+     "unit": "ops"
+    },
+    "overrides": []
+   },
+   "gridPos": {
+    "h": 11,
+    "w": 24,
+    "x": 0,
+    "y": 14
+   },
+   "id": 1,
+   "options": {
+    "legend": {
+     "calcs": ["mean"],
+     "displayMode": "table",
+     "placement": "right",
+     "showLegend": true,
+     "sortBy": "Mean",
+     "sortDesc": true
+    },
+    "tooltip": {
+     "mode": "single",
+     "sort": "none"
+    }
+   },
+   "targets": [
+    {
+     "datasource": {
+      "type": "prometheus",
+      "uid": "cdpj6ma4mq7swb"
+     },
+     "disableTextWrap": false,
+     "editorMode": "code",
+     "expr": "sum by(action, modelName) (rate(ayako_db_query_execute{modelName=~\"$modelName\",action=~\"$action\"}[$__rate_interval]))",
+     "fullMetaSearch": false,
+     "includeNullMetadata": true,
+     "instant": false,
+     "legendFormat": "{{action}} {{modelName}}",
+     "range": true,
+     "refId": "A",
+     "useBackend": false
+    }
+   ],
+   "title": "DB Query Execute",
+   "type": "timeseries"
+  },
+  {
+   "datasource": {
+    "type": "prometheus",
+    "uid": "cdpj6ma4mq7swb"
+   },
+   "fieldConfig": {
+    "defaults": {
+     "color": {
+      "mode": "palette-classic"
+     },
+     "custom": {
+      "axisBorderShow": false,
+      "axisCenteredZero": false,
+      "axisColorMode": "text",
+      "axisLabel": "",
+      "axisPlacement": "auto",
+      "barAlignment": 0,
+      "drawStyle": "line",
+      "fillOpacity": 0,
+      "gradientMode": "none",
+      "hideFrom": {
+       "legend": false,
+       "tooltip": false,
+       "viz": false
+      },
+      "insertNulls": false,
+      "lineInterpolation": "linear",
+      "lineWidth": 1,
+      "pointSize": 5,
+      "scaleDistribution": {
+       "type": "linear"
+      },
+      "showPoints": "auto",
+      "spanNulls": false,
+      "stacking": {
+       "group": "A",
+       "mode": "none"
+      },
+      "thresholdsStyle": {
+       "mode": "off"
+      }
+     },
+     "mappings": [],
+     "thresholds": {
+      "mode": "absolute",
+      "steps": [
+       {
+        "color": "green",
+        "value": null
+       },
+       {
+        "color": "red",
+        "value": 80
+       }
+      ]
+     }
+    },
+    "overrides": []
+   },
+   "gridPos": {
+    "h": 12,
+    "w": 12,
+    "x": 0,
+    "y": 25
+   },
+   "id": 2,
+   "options": {
+    "legend": {
+     "calcs": [],
+     "displayMode": "list",
+     "placement": "right",
+     "showLegend": true
+    },
+    "tooltip": {
+     "mode": "single",
+     "sort": "none"
+    }
+   },
+   "targets": [
+    {
+     "datasource": {
+      "type": "prometheus",
+      "uid": "cdpj6ma4mq7swb"
+     },
+     "editorMode": "code",
+     "expr": "sum by(action) (rate(ayako_db_query_execute{modelName=~\"$modelName\",action=~\"$action\"}[$__rate_interval]))",
+     "instant": false,
+     "legendFormat": "__auto",
+     "range": true,
+     "refId": "A"
+    }
+   ],
+   "title": "Usage by action",
+   "type": "timeseries"
+  },
+  {
+   "datasource": {
+    "type": "prometheus",
+    "uid": "cdpj6ma4mq7swb"
+   },
+   "fieldConfig": {
+    "defaults": {
+     "color": {
+      "mode": "palette-classic"
+     },
+     "custom": {
+      "axisBorderShow": false,
+      "axisCenteredZero": false,
+      "axisColorMode": "text",
+      "axisLabel": "",
+      "axisPlacement": "auto",
+      "barAlignment": 0,
+      "drawStyle": "line",
+      "fillOpacity": 0,
+      "gradientMode": "none",
+      "hideFrom": {
+       "legend": false,
+       "tooltip": false,
+       "viz": false
+      },
+      "insertNulls": false,
+      "lineInterpolation": "linear",
+      "lineWidth": 1,
+      "pointSize": 5,
+      "scaleDistribution": {
+       "type": "linear"
+      },
+      "showPoints": "auto",
+      "spanNulls": false,
+      "stacking": {
+       "group": "A",
+       "mode": "none"
+      },
+      "thresholdsStyle": {
+       "mode": "off"
+      }
+     },
+     "mappings": [],
+     "thresholds": {
+      "mode": "absolute",
+      "steps": [
+       {
+        "color": "green",
+        "value": null
+       },
+       {
+        "color": "red",
+        "value": 80
+       }
+      ]
+     }
+    },
+    "overrides": []
+   },
+   "gridPos": {
+    "h": 12,
+    "w": 12,
+    "x": 12,
+    "y": 25
+   },
+   "id": 3,
+   "options": {
+    "legend": {
+     "calcs": [],
+     "displayMode": "list",
+     "placement": "right",
+     "showLegend": true
+    },
+    "tooltip": {
+     "mode": "single",
+     "sort": "none"
+    }
+   },
+   "targets": [
+    {
+     "datasource": {
+      "type": "prometheus",
+      "uid": "cdpj6ma4mq7swb"
+     },
+     "editorMode": "code",
+     "expr": "sum by(modelName) (rate(ayako_db_query_execute{modelName=~\"$modelName\",action=~\"$action\"}[$__rate_interval]))",
+     "instant": false,
+     "legendFormat": "__auto",
+     "range": true,
+     "refId": "A"
+    }
+   ],
+   "title": "Usage by model",
+   "type": "timeseries"
+  }
+ ],
+ "refresh": "",
+ "schemaVersion": 39,
+ "tags": [],
+ "templating": {
+  "list": [
+   {
+    "current": {
+     "selected": true,
+     "text": ["All"],
+     "value": ["$__all"]
+    },
+    "datasource": {
+     "type": "prometheus",
+     "uid": "cdpj6ma4mq7swb"
+    },
+    "definition": "label_values(action)",
+    "hide": 0,
+    "includeAll": true,
+    "multi": true,
+    "name": "action",
+    "options": [],
+    "query": {
+     "qryType": 1,
+     "query": "label_values(action)",
+     "refId": "PrometheusVariableQueryEditor-VariableQuery"
+    },
+    "refresh": 1,
+    "regex": "",
+    "skipUrlSync": false,
+    "sort": 0,
+    "type": "query"
+   },
+   {
+    "current": {
+     "selected": true,
+     "text": ["All"],
+     "value": ["$__all"]
+    },
+    "datasource": {
+     "type": "prometheus",
+     "uid": "cdpj6ma4mq7swb"
+    },
+    "definition": "label_values(modelName)",
+    "hide": 0,
+    "includeAll": true,
+    "multi": true,
+    "name": "modelName",
+    "options": [],
+    "query": {
+     "qryType": 1,
+     "query": "label_values(modelName)",
+     "refId": "PrometheusVariableQueryEditor-VariableQuery"
+    },
+    "refresh": 1,
+    "regex": "",
+    "skipUrlSync": false,
+    "sort": 0,
+    "type": "query"
+   }
+  ]
+ },
+ "time": {
+  "from": "now-15m",
+  "to": "now"
+ },
+ "timepicker": {},
+ "timezone": "browser",
+ "title": "Ayako Database",
+ "uid": "ddvmmkk2z5qf4a",
+ "version": 21,
+ "weekStart": ""
+}
