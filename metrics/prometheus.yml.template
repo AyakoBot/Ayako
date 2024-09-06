@@ -1,0 +1,27 @@
+global:
+  scrape_interval: 5s
+  evaluation_interval: 15s
+  external_labels:
+    monitor: 'codelab-monitor'
+
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+
+rule_files:
+
+scrape_configs:
+  - job_name: 'nirn'
+    static_configs:
+      - targets: ['nirn:9000']
+
+  - job_name: 'ayako'
+    authorization:
+      credentials: '$MAIN_METRICS_TOKEN'
+    static_configs:
+      - targets: ['api:443']
+
+  - job_name: postgres
+    static_configs:
+      - targets: ["psqlExporter:9187"]
