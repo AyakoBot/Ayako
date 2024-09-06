@@ -103,7 +103,7 @@ services:
   build:
    context: .
    dockerfile: ./Dockerfile
-  entrypoint: ["./metrics/entrypoint.sh"]
+  entrypoint: ["/app/metrics/entrypoint.sh"]
   restart: unless-stopped
   volumes:
    - prometheus-data:/prometheus
