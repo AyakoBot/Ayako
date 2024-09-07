@@ -19,27 +19,22 @@ services:
   environment:
    REQUEST_TIMEOUT: 15000
 
- # ayako:
- #  build:
- #   context: .
- #   dockerfile: ./packages/Bot/Dockerfile
- #  working_dir: /app/packages/Bot
- #  command: ["pnpm", "dev"]
- #  restart: unless-stopped
- #  depends_on:
- #   - postgres
- #   - redis
- #   - nirn
- #  env_file:
- #   - ./packages/Bot/.env
- #  volumes:
- #   - .:/app
+ ayako:
+  build:
+   context: .
+   dockerfile: ./packages/Bot/Dockerfile
+  working_dir: /app/packages/Bot
+  command: ["pnpm", "dev"]
+  restart: unless-stopped
+  depends_on:
+   - postgres
+   - redis
+   - nirn
 
  api:
   build:
    context: .
    dockerfile: ./packages/Server/Dockerfile
-  command: ["pnpm", "start"]
   working_dir: /app/packages/Server
   restart: unless-stopped
   depends_on:
@@ -61,12 +56,13 @@ services:
   command: tunnel --no-autoupdate run --token ${CLOUDFLARE_TOKEN}
   restart: unless-stopped
 
- # Kiyu:
- #   image: node:22
+ # kiyu:
+ #   build:
+ #    context: ../Kiyu
+ #    dockerfile: ../Kiyu/Dockerfile
  #   restart: unless-stopped
  #   depends_on:
  #     - postgres
- #   command: sh -c "npm i -g pnpm && pnpm i && pnpx prisma db push && pnpm start"
 
  # CC:
  #   image: node:22
@@ -92,18 +88,13 @@ services:
  grafana:
   image: grafana/grafana:latest
   restart: unless-stopped
-  depends_on:
-   - prometheus
   volumes:
    - grafana-data:/var/lib/grafana
    - ./metrics/dashboards:/etc/grafana/provisioning/dashboards
    - ./metrics/datasources:/etc/grafana/provisioning/datasources
 
  prometheus:
-  build:
-   context: .
-   dockerfile: ./Dockerfile
-  entrypoint: ["/app/metrics/entrypoint.sh"]
+  image: prom/prometheus
   restart: unless-stopped
   volumes:
    - prometheus-data:/prometheus

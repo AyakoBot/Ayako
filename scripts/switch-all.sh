@@ -1,4 +1,4 @@
-cd ./apps/Website
+cd ../apps/Website
 git checkout main
 git pull
 
