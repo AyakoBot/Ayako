@@ -2,6 +2,8 @@ services:
  redis:
   image: redis:7.4
   restart: unless-stopped
+  ports:
+   - "6379:6379"
 
  postgres:
   image: postgres:16.4
@@ -19,12 +21,24 @@ services:
   environment:
    REQUEST_TIMEOUT: 15000
 
- ayako:
+ ayako-dev:
   build:
    context: .
    dockerfile: ./packages/Bot/Dockerfile
   working_dir: /app/packages/Bot
   command: ["pnpm", "dev"]
+  restart: unless-stopped
+  depends_on:
+   - postgres
+   - redis
+   - nirn
+
+ ayako:
+  build:
+   context: .
+   dockerfile: ./packages/Bot/Dockerfile
+  working_dir: /app/packages/Bot
+  command: ["pnpm", "start"]
   restart: unless-stopped
   depends_on:
    - postgres
@@ -37,6 +51,7 @@ services:
    dockerfile: ./packages/Server/Dockerfile
   working_dir: /app/packages/Server
   restart: unless-stopped
+  command: ["pnpm", "start"]
   depends_on:
    - postgres
    - redis
@@ -63,13 +78,6 @@ services:
  #   restart: unless-stopped
  #   depends_on:
  #     - postgres
-
- # CC:
- #   image: node:22
- #   restart: unless-stopped
- #   depends_on:
- #     - postgres
- #   command: sh -c "npm i -g pnpm && pnpm i && pnpx prisma db push && pnpm start"
 
  # Kitten-PayPal:
  #   image: node:22
