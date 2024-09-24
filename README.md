@@ -9,6 +9,11 @@
 git clone git@github.com/AyakoBot/Ayako.git --recurse
 ```
 - Copy the `.env.example` file to `.env` and fill/replace the values
+- Make Prometheus ready
+```bash
+cd ./scripts
+./postclone.sh
+```
 - Build and run the Docker Compose image
 ```bash
 docker compose up -d
