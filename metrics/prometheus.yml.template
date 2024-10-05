@@ -20,7 +20,7 @@ scrape_configs:
     authorization:
       credentials: $METRICS_TOKEN
     static_configs:
-      - targets: ['api:443']
+      - targets: ['api.ayakobot.com']
 
   - job_name: postgres
     static_configs:

@@ -1,4 +1,3 @@
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -1035,6 +1034,7 @@ model users {
   ptremindersent Boolean  @default(false)
   votereminders  Boolean  @default(true)
   tokens         tokens[]
+  apiToken       String?  @db.Text
 
   @@index([userid])
 }
@@ -1052,14 +1052,14 @@ model tokens {
 }
 
 model linkedRolesDeco {
-  roleId          String? @db.VarChar
-  uniquetimestamp Decimal @db.Decimal
-  guildid         String  @db.VarChar
+  roleId          String?  @db.VarChar
+  uniquetimestamp Decimal  @db.Decimal
+  guildid         String   @db.VarChar
   allowedUsers    String[] @db.VarChar
 
-  botId           String? @db.VarChar
-  botSecret       String? @db.VarChar
-  botToken        String? @db.VarChar
+  botId     String? @db.VarChar
+  botSecret String? @db.VarChar
+  botToken  String? @db.VarChar
 
   @@id(uniquetimestamp)
   @@index([uniquetimestamp])
@@ -1074,27 +1074,36 @@ model linkedRoleTokens {
 }
 
 model noCommandsGuilds {
- guildId String @db.VarChar
+  guildId String @db.VarChar
 
- @@id(guildId)
- @@index(guildId)
+  @@id(guildId)
+  @@index(guildId)
 }
 
 model blockingUsers {
- userId String @db.VarChar
- created Decimal @db.Decimal
+  userId  String  @db.VarChar
+  created Decimal @db.Decimal
 
- @@id(userId)
- @@index(userId)
+  @@id(userId)
+  @@index(userId)
 }
 
 model awaitJoinCC {
- botId String @db.VarChar
- guildId String @db.VarChar
+  botId   String @db.VarChar
+  guildId String @db.VarChar
 
+  @@id(guildId)
+  @@index(botId)
+}
 
- @@id(guildId)
- @@index(botId)
+model urlScans {
+  url     String  @db.Text
+  id      String  @db.Text
+  done    Boolean @default(false)
+  expires Decimal @db.Decimal
+
+  @@id(id)
+  @@index(url)
 }
 
 enum AutoPunishPunishmentType {
@@ -1173,4 +1182,3 @@ enum AppealStatus {
   accepted
   rejected
 }
-
