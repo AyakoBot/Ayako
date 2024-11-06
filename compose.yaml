@@ -71,28 +71,6 @@ services:
   command: tunnel --no-autoupdate run --token ${CLOUDFLARE_TOKEN}
   restart: unless-stopped
 
- # kiyu:
- #   build:
- #    context: ../Kiyu
- #    dockerfile: ../Kiyu/Dockerfile
- #   restart: unless-stopped
- #   depends_on:
- #     - postgres
-
- # Kitten-PayPal:
- #   image: node:22
- #   restart: unless-stopped
- #   depends_on:
- #     - postgres
- #   command: sh -c "npm i -g pnpm && pnpm i && pnpx prisma db push && pnpm start"
-
- # Reiko:
- #   image: node:22
- #   restart: unless-stopped
- #   depends_on:
- #     - postgres
- #   command: sh -c "npm i -g pnpm && pnpm i && pnpx prisma db push && pnpm start"
-
  grafana:
   image: grafana/grafana:latest
   restart: unless-stopped
