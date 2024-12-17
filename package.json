@@ -11,8 +11,8 @@
   },
   "devDependencies": {
     "@manypkg/cli": "^0.23.0",
-    "@prisma/client": "^6.0.1",
-    "prisma": "^6.0.1"
+    "@prisma/client": "^6.1.0",
+    "prisma": "^6.1.0"
   },
   "packageManager": "pnpm@9.9.0",
   "engines": {
