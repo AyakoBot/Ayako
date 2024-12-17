@@ -2,6 +2,10 @@
 	path = apps/Website
 	url = https://github.com/AyakoBot/Website.git
  branch = main
+[submodule "apps/Dashboard"]
+	path = apps/Dashboard
+	url = https://github.com/AyakoBot/Dashboard.git
+ branch = main
 [submodule "packages/Server"]
 	path = packages/Server
 	url = https://github.com/AyakoBot/Server.git
