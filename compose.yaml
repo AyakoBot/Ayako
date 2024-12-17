@@ -44,6 +44,8 @@ services:
    - postgres
    - redis
    - nirn
+  volumes:
+   - ./packages/Bot/logs:/app/packages/Bot/logs
 
  api:
   build:

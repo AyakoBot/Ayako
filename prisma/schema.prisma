@@ -275,11 +275,13 @@ model expiry {
   kicks           Boolean  @default(false)
   mutes           Boolean  @default(false)
   warns           Boolean  @default(false)
+  voice           Boolean  @default(false)
   banstime        Decimal? @db.Decimal
   channelbanstime Decimal? @db.Decimal
   kickstime       Decimal? @db.Decimal
   mutestime       Decimal? @db.Decimal
   warnstime       Decimal? @db.Decimal
+  voicetime       Decimal? @db.Decimal
 
   @@index([guildid])
 }
@@ -518,124 +520,22 @@ model nitrousers {
   @@index([guildid])
 }
 
-model punish_bans {
-  guildid         String   @db.VarChar
-  userid          String   @db.VarChar
+model punishments {
+  guildid         String                @db.VarChar
+  userid          String                @db.VarChar
   reason          String?
-  uniquetimestamp Decimal  @id(map: "mutes_pkey") @db.Decimal
-  channelid       String   @db.VarChar
+  uniquetimestamp Decimal               @db.Decimal
+  channelid       String                @db.VarChar
   channelname     String
-  executorid      String   @db.VarChar
+  executorid      String                @db.VarChar
   executorname    String
-  duration        Decimal? @db.Decimal
-  msgid           String   @db.VarChar
+  msgid           String                @db.VarChar
+  duration        Decimal?              @db.Decimal
+  context         String?               @db.VarChar
+  type            StoredPunishmentTypes
 
-  @@index([guildid, uniquetimestamp, userid])
-}
-
-model punish_channelbans {
-  guildid         String   @db.VarChar
-  userid          String   @db.VarChar
-  reason          String?
-  uniquetimestamp Decimal  @id(map: "punish_channelban_pkey") @db.Decimal
-  channelid       String   @db.VarChar
-  channelname     String
-  executorid      String   @db.VarChar
-  executorname    String
-  msgid           String   @db.VarChar
-  banchannelid    String   @db.VarChar
-  duration        Decimal? @db.Decimal
-
-  @@index([guildid, uniquetimestamp, userid])
-}
-
-model punish_kicks {
-  guildid         String  @db.VarChar
-  userid          String  @db.VarChar
-  reason          String?
-  uniquetimestamp Decimal @id @db.Decimal
-  channelid       String  @db.VarChar
-  channelname     String
-  executorid      String  @db.VarChar
-  executorname    String
-  msgid           String  @db.VarChar
-
-  @@index([guildid, uniquetimestamp, userid])
-}
-
-model punish_mutes {
-  guildid         String   @db.VarChar
-  userid          String   @db.VarChar
-  reason          String?
-  uniquetimestamp Decimal  @id @db.Decimal
-  channelid       String   @db.VarChar
-  channelname     String
-  executorid      String   @db.VarChar
-  executorname    String
-  msgid           String   @db.VarChar
-  duration        Decimal? @db.Decimal
-
-  @@index([guildid, uniquetimestamp, userid])
-}
-
-model punish_tempbans {
-  guildid         String  @db.VarChar
-  userid          String  @db.VarChar
-  reason          String?
-  uniquetimestamp Decimal @id @db.Decimal
-  channelid       String  @db.VarChar
-  channelname     String
-  executorid      String  @db.VarChar
-  executorname    String
-  msgid           String  @db.VarChar
-  duration        Decimal @db.Decimal
-
+  @@id(uniquetimestamp)
   @@index([guildid, userid])
-}
-
-model punish_tempchannelbans {
-  guildid         String  @db.VarChar
-  userid          String  @db.VarChar
-  reason          String?
-  uniquetimestamp Decimal @id(map: "punish_tempchannelban_pkey") @db.Decimal
-  channelid       String  @db.VarChar
-  channelname     String
-  executorid      String  @db.VarChar
-  executorname    String
-  msgid           String  @db.VarChar
-  banchannelid    String  @db.VarChar
-  duration        Decimal @db.Decimal
-
-  @@index([guildid, uniquetimestamp, userid])
-}
-
-model punish_tempmutes {
-  guildid         String  @db.VarChar
-  userid          String  @db.VarChar
-  reason          String?
-  uniquetimestamp Decimal @id @db.Decimal
-  channelid       String  @db.VarChar
-  channelname     String
-  executorid      String  @db.VarChar
-  executorname    String
-  msgid           String  @db.VarChar
-  duration        Decimal @db.Decimal
-
-  @@index([guildid, userid])
-}
-
-model punish_warns {
-  guildid         String  @db.VarChar
-  userid          String  @db.VarChar
-  reason          String?
-  uniquetimestamp Decimal @id @db.Decimal
-  channelid       String  @db.VarChar
-  channelname     String
-  executorid      String  @db.VarChar
-  executorname    String
-  msgid           String  @db.VarChar
-
-  @@index([guildid, uniquetimestamp, userid])
 }
 
 model reactionroles {
@@ -1035,6 +935,7 @@ model users {
   votereminders  Boolean  @default(true)
   tokens         tokens[]
   apiToken       String?  @db.Text
+  shrtUrlsAccess Boolean  @default(false)
 
   @@index([userid])
 }
@@ -1088,14 +989,6 @@ model blockingUsers {
   @@index(userId)
 }
 
-model awaitJoinCC {
-  botId   String @db.VarChar
-  guildId String @db.VarChar
-
-  @@id(guildId)
-  @@index(botId)
-}
-
 model urlScans {
   url     String  @db.Text
   id      String  @db.Text
@@ -1104,6 +997,35 @@ model urlScans {
 
   @@id(id)
   @@index(url)
+}
+
+model shrtUrls {
+  id      String @db.Text
+  userId  String @db.VarChar
+  forward String @db.Text
+
+  uses shrtUrlUses[]
+
+  @@id(id)
+}
+
+model shrtUrlUses {
+  id        String  @db.Text
+  timestamp Decimal @db.Decimal
+
+  url shrtUrls @relation(fields: id, references: id)
+
+  @@id(timestamp)
+}
+
+model voiceStateUpdateQueue {
+  userId  String @db.VarChar
+  guildId String @db.VarChar
+
+  deaf Boolean
+  mute Boolean
+
+  @@id([userId, guildId])
 }
 
 enum AutoPunishPunishmentType {
@@ -1127,6 +1049,22 @@ enum PunishmentType {
   tempchannelban
   strike
   softban
+}
+
+enum StoredPunishmentTypes {
+  warn
+  kick
+  tempmute
+  ban
+  tempban
+  channelban
+  tempchannelban
+  softban
+  vctempmute
+  vctempdeaf
+  vcdeaf
+  vcmute
+  mute
 }
 
 enum AntiRaidPunishmentType {

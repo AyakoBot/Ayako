@@ -1,0 +1,588 @@
+{
+ "annotations": {
+   "list": [
+     {
+       "builtIn": 1,
+       "datasource": {
+         "type": "grafana",
+         "uid": "-- Grafana --"
+       },
+       "enable": true,
+       "hide": true,
+       "iconColor": "rgba(0, 211, 255, 1)",
+       "name": "Annotations & Alerts",
+       "type": "dashboard"
+     }
+   ]
+ },
+ "editable": true,
+ "fiscalYearStartMonth": 0,
+ "graphTooltip": 0,
+ "id": 7,
+ "links": [],
+ "panels": [
+   {
+     "datasource": {
+       "default": true,
+       "type": "prometheus",
+       "uid": "cdpj6ma4mq7swb"
+     },
+     "fieldConfig": {
+       "defaults": {
+         "color": {
+           "mode": "palette-classic"
+         },
+         "custom": {
+           "axisBorderShow": false,
+           "axisCenteredZero": false,
+           "axisColorMode": "text",
+           "axisLabel": "",
+           "axisPlacement": "auto",
+           "barAlignment": 0,
+           "barWidthFactor": 0.6,
+           "drawStyle": "line",
+           "fillOpacity": 0,
+           "gradientMode": "none",
+           "hideFrom": {
+             "legend": false,
+             "tooltip": false,
+             "viz": false
+           },
+           "insertNulls": false,
+           "lineInterpolation": "linear",
+           "lineWidth": 1,
+           "pointSize": 5,
+           "scaleDistribution": {
+             "type": "linear"
+           },
+           "showPoints": "auto",
+           "spanNulls": false,
+           "stacking": {
+             "group": "A",
+             "mode": "none"
+           },
+           "thresholdsStyle": {
+             "mode": "off"
+           }
+         },
+         "mappings": [],
+         "thresholds": {
+           "mode": "absolute",
+           "steps": [
+             {
+               "color": "green",
+               "value": null
+             },
+             {
+               "color": "red",
+               "value": 80
+             }
+           ]
+         },
+         "unit": "reqpm"
+       },
+       "overrides": []
+     },
+     "gridPos": {
+       "h": 8,
+       "w": 12,
+       "x": 0,
+       "y": 0
+     },
+     "id": 3,
+     "options": {
+       "legend": {
+         "calcs": [],
+         "displayMode": "list",
+         "placement": "bottom",
+         "showLegend": true
+       },
+       "tooltip": {
+         "mode": "single",
+         "sort": "none"
+       }
+     },
+     "targets": [
+       {
+         "datasource": {
+           "type": "prometheus",
+           "uid": "cdpj6ma4mq7swb"
+         },
+         "editorMode": "code",
+         "expr": "sum by (path) (rate(ayako_api_calls{path=~\"$path\"}[$__rate_interval]))",
+         "instant": false,
+         "legendFormat": "__auto",
+         "range": true,
+         "refId": "A"
+       }
+     ],
+     "title": "Requests by Path",
+     "type": "timeseries"
+   },
+   {
+     "datasource": {
+       "default": true,
+       "type": "prometheus",
+       "uid": "cdpj6ma4mq7swb"
+     },
+     "fieldConfig": {
+       "defaults": {
+         "color": {
+           "mode": "palette-classic"
+         },
+         "custom": {
+           "axisBorderShow": false,
+           "axisCenteredZero": false,
+           "axisColorMode": "text",
+           "axisLabel": "",
+           "axisPlacement": "auto",
+           "barAlignment": 0,
+           "barWidthFactor": 0.6,
+           "drawStyle": "line",
+           "fillOpacity": 0,
+           "gradientMode": "none",
+           "hideFrom": {
+             "legend": false,
+             "tooltip": false,
+             "viz": false
+           },
+           "insertNulls": false,
+           "lineInterpolation": "linear",
+           "lineWidth": 1,
+           "pointSize": 5,
+           "scaleDistribution": {
+             "type": "linear"
+           },
+           "showPoints": "auto",
+           "spanNulls": false,
+           "stacking": {
+             "group": "A",
+             "mode": "none"
+           },
+           "thresholdsStyle": {
+             "mode": "off"
+           }
+         },
+         "mappings": [],
+         "thresholds": {
+           "mode": "absolute",
+           "steps": [
+             {
+               "color": "green",
+               "value": null
+             },
+             {
+               "color": "red",
+               "value": 80
+             }
+           ]
+         },
+         "unit": "reqpm"
+       },
+       "overrides": []
+     },
+     "gridPos": {
+       "h": 8,
+       "w": 12,
+       "x": 12,
+       "y": 0
+     },
+     "id": 2,
+     "options": {
+       "legend": {
+         "calcs": [],
+         "displayMode": "list",
+         "placement": "bottom",
+         "showLegend": true
+       },
+       "tooltip": {
+         "mode": "single",
+         "sort": "none"
+       }
+     },
+     "targets": [
+       {
+         "datasource": {
+           "type": "prometheus",
+           "uid": "cdpj6ma4mq7swb"
+         },
+         "editorMode": "code",
+         "expr": "sum by (method) (rate(ayako_api_calls{method=~\"$method\"}[$__rate_interval]))",
+         "instant": false,
+         "legendFormat": "{{method}}",
+         "range": true,
+         "refId": "A"
+       }
+     ],
+     "title": "Requests by Method",
+     "type": "timeseries"
+   },
+   {
+     "datasource": {
+       "default": true,
+       "type": "prometheus",
+       "uid": "cdpj6ma4mq7swb"
+     },
+     "fieldConfig": {
+       "defaults": {
+         "color": {
+           "mode": "palette-classic"
+         },
+         "custom": {
+           "axisBorderShow": false,
+           "axisCenteredZero": false,
+           "axisColorMode": "text",
+           "axisLabel": "",
+           "axisPlacement": "auto",
+           "barAlignment": 0,
+           "barWidthFactor": 0.6,
+           "drawStyle": "line",
+           "fillOpacity": 0,
+           "gradientMode": "none",
+           "hideFrom": {
+             "legend": false,
+             "tooltip": false,
+             "viz": false
+           },
+           "insertNulls": false,
+           "lineInterpolation": "linear",
+           "lineWidth": 1,
+           "pointSize": 5,
+           "scaleDistribution": {
+             "type": "linear"
+           },
+           "showPoints": "auto",
+           "spanNulls": false,
+           "stacking": {
+             "group": "A",
+             "mode": "none"
+           },
+           "thresholdsStyle": {
+             "mode": "off"
+           }
+         },
+         "mappings": [],
+         "thresholds": {
+           "mode": "absolute",
+           "steps": [
+             {
+               "color": "green",
+               "value": null
+             },
+             {
+               "color": "red",
+               "value": 80
+             }
+           ]
+         },
+         "unit": "reqpm"
+       },
+       "overrides": []
+     },
+     "gridPos": {
+       "h": 9,
+       "w": 24,
+       "x": 0,
+       "y": 8
+     },
+     "id": 1,
+     "options": {
+       "legend": {
+         "calcs": [],
+         "displayMode": "list",
+         "placement": "right",
+         "showLegend": true
+       },
+       "tooltip": {
+         "mode": "single",
+         "sort": "none"
+       }
+     },
+     "targets": [
+       {
+         "datasource": {
+           "type": "prometheus",
+           "uid": "cdpj6ma4mq7swb"
+         },
+         "editorMode": "builder",
+         "expr": "sum by (apiVersion, method, path) (rate(ayako_api_calls{apiVersion=~\"$apiVersion\",method=~\"$method\",path=~\"$path\"}[$__rate_interval]))",
+         "instant": false,
+         "legendFormat": "{{apiVersion}} {{method}} {{path}}",
+         "range": true,
+         "refId": "A"
+       }
+     ],
+     "title": "Requests",
+     "type": "timeseries"
+   },
+   {
+     "datasource": {
+       "default": true,
+       "type": "prometheus",
+       "uid": "cdpj6ma4mq7swb"
+     },
+     "fieldConfig": {
+       "defaults": {
+         "color": {
+           "mode": "palette-classic"
+         },
+         "custom": {
+           "axisBorderShow": false,
+           "axisCenteredZero": false,
+           "axisColorMode": "text",
+           "axisLabel": "",
+           "axisPlacement": "auto",
+           "barAlignment": 0,
+           "barWidthFactor": 0.6,
+           "drawStyle": "line",
+           "fillOpacity": 0,
+           "gradientMode": "none",
+           "hideFrom": {
+             "legend": false,
+             "tooltip": false,
+             "viz": false
+           },
+           "insertNulls": false,
+           "lineInterpolation": "linear",
+           "lineWidth": 1,
+           "pointSize": 5,
+           "scaleDistribution": {
+             "type": "linear"
+           },
+           "showPoints": "auto",
+           "spanNulls": false,
+           "stacking": {
+             "group": "A",
+             "mode": "none"
+           },
+           "thresholdsStyle": {
+             "mode": "off"
+           }
+         },
+         "mappings": [],
+         "thresholds": {
+           "mode": "absolute",
+           "steps": [
+             {
+               "color": "green",
+               "value": null
+             },
+             {
+               "color": "red",
+               "value": 80
+             }
+           ]
+         },
+         "unit": "reqpm"
+       },
+       "overrides": []
+     },
+     "gridPos": {
+       "h": 13,
+       "w": 24,
+       "x": 0,
+       "y": 17
+     },
+     "id": 4,
+     "options": {
+       "legend": {
+         "calcs": [],
+         "displayMode": "list",
+         "placement": "right",
+         "showLegend": true
+       },
+       "tooltip": {
+         "mode": "single",
+         "sort": "none"
+       }
+     },
+     "targets": [
+       {
+         "datasource": {
+           "type": "prometheus",
+           "uid": "cdpj6ma4mq7swb"
+         },
+         "editorMode": "code",
+         "expr": "sum by (status, path) (rate(ayako_api_responses{status=~\"$status\",path=~\"$resPath\"}[$__rate_interval]))",
+         "instant": false,
+         "legendFormat": "{{status}} {{path}}",
+         "range": true,
+         "refId": "A"
+       }
+     ],
+     "title": "Response Codes",
+     "type": "timeseries"
+   }
+ ],
+ "schemaVersion": 39,
+ "tags": [],
+ "templating": {
+   "list": [
+     {
+       "current": {
+         "selected": false,
+         "text": [
+           "All"
+         ],
+         "value": [
+           "$__all"
+         ]
+       },
+       "datasource": {
+         "type": "prometheus",
+         "uid": "cdpj6ma4mq7swb"
+       },
+       "definition": "label_values(ayako_api_responses,status)",
+       "hide": 0,
+       "includeAll": true,
+       "multi": true,
+       "name": "status",
+       "options": [],
+       "query": {
+         "qryType": 1,
+         "query": "label_values(ayako_api_responses,status)",
+         "refId": "PrometheusVariableQueryEditor-VariableQuery"
+       },
+       "refresh": 1,
+       "regex": "",
+       "skipUrlSync": false,
+       "sort": 0,
+       "type": "query"
+     },
+     {
+       "current": {
+         "selected": false,
+         "text": [
+           "All"
+         ],
+         "value": [
+           "$__all"
+         ]
+       },
+       "datasource": {
+         "type": "prometheus",
+         "uid": "cdpj6ma4mq7swb"
+       },
+       "definition": "label_values(ayako_api_calls,apiVersion)",
+       "hide": 0,
+       "includeAll": true,
+       "multi": true,
+       "name": "apiVersion",
+       "options": [],
+       "query": {
+         "qryType": 1,
+         "query": "label_values(ayako_api_calls,apiVersion)",
+         "refId": "PrometheusVariableQueryEditor-VariableQuery"
+       },
+       "refresh": 1,
+       "regex": "",
+       "skipUrlSync": false,
+       "sort": 0,
+       "type": "query"
+     },
+     {
+       "current": {
+         "selected": false,
+         "text": [
+           "All"
+         ],
+         "value": [
+           "$__all"
+         ]
+       },
+       "datasource": {
+         "type": "prometheus",
+         "uid": "cdpj6ma4mq7swb"
+       },
+       "definition": "label_values(ayako_api_calls,path)",
+       "hide": 0,
+       "includeAll": true,
+       "multi": true,
+       "name": "path",
+       "options": [],
+       "query": {
+         "qryType": 1,
+         "query": "label_values(ayako_api_calls,path)",
+         "refId": "PrometheusVariableQueryEditor-VariableQuery"
+       },
+       "refresh": 1,
+       "regex": "",
+       "skipUrlSync": false,
+       "sort": 0,
+       "type": "query"
+     },
+     {
+       "current": {
+         "selected": false,
+         "text": [
+           "All"
+         ],
+         "value": [
+           "$__all"
+         ]
+       },
+       "datasource": {
+         "type": "prometheus",
+         "uid": "cdpj6ma4mq7swb"
+       },
+       "definition": "label_values(ayako_api_calls,method)",
+       "hide": 0,
+       "includeAll": true,
+       "multi": true,
+       "name": "method",
+       "options": [],
+       "query": {
+         "qryType": 1,
+         "query": "label_values(ayako_api_calls,method)",
+         "refId": "PrometheusVariableQueryEditor-VariableQuery"
+       },
+       "refresh": 1,
+       "regex": "",
+       "skipUrlSync": false,
+       "sort": 0,
+       "type": "query"
+     },
+     {
+       "current": {
+         "selected": true,
+         "text": [
+           "All"
+         ],
+         "value": [
+           "$__all"
+         ]
+       },
+       "datasource": {
+         "type": "prometheus",
+         "uid": "cdpj6ma4mq7swb"
+       },
+       "definition": "label_values(ayako_api_responses,path)",
+       "hide": 0,
+       "includeAll": true,
+       "multi": true,
+       "name": "resPath",
+       "options": [],
+       "query": {
+         "qryType": 1,
+         "query": "label_values(ayako_api_responses,path)",
+         "refId": "PrometheusVariableQueryEditor-VariableQuery"
+       },
+       "refresh": 1,
+       "regex": "",
+       "skipUrlSync": false,
+       "sort": 0,
+       "type": "query"
+     }
+   ]
+ },
+ "time": {
+   "from": "2024-11-06T10:19:07.144Z",
+   "to": "2024-11-06T10:34:07.144Z"
+ },
+ "timepicker": {},
+ "timezone": "browser",
+ "title": "Ayako API",
+ "uid": "be34beiw7ow74c",
+ "version": 5,
+ "weekStart": ""
+}

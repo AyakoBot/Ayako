@@ -9,10 +9,10 @@
     "postinstall": "pnpm manypkg check",
     "prisma:push": "pnpx prisma db push"
   },
-  "dependencies": {
-    "@manypkg/cli": "^0.21.4",
-    "@prisma/client": "^5.20.0",
-    "prisma": "^5.20.0"
+  "devDependencies": {
+    "@manypkg/cli": "^0.23.0",
+    "@prisma/client": "^6.0.1",
+    "prisma": "^6.0.1"
   },
   "packageManager": "pnpm@9.9.0",
   "engines": {
