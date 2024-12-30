@@ -275,12 +275,12 @@ model expiry {
   kicks           Boolean  @default(false)
   mutes           Boolean  @default(false)
   warns           Boolean  @default(false)
-  voice           Boolean  @default(false)
   banstime        Decimal? @db.Decimal
   channelbanstime Decimal? @db.Decimal
   kickstime       Decimal? @db.Decimal
   mutestime       Decimal? @db.Decimal
   warnstime       Decimal? @db.Decimal
+  voice           Boolean  @default(false)
   voicetime       Decimal? @db.Decimal
 
   @@index([guildid])
@@ -344,7 +344,7 @@ model customclients {
   publickey String? @db.VarChar
   secret    String? @db.VarChar
 
-  @@index(appid)
+  @@index([appid])
 }
 
 model guildsettings {
@@ -392,17 +392,31 @@ model levelchannels {
 model leveling {
   guildid         String      @id @db.VarChar
   active          Boolean     @default(true)
+
+  // General
   xpmultiplier    Decimal     @default(1) @db.Decimal
-  xppermsg        Decimal     @default(25) @db.Decimal
   rolemode        Boolean     @default(false)
+
+  // Level-up Notification
   lvlupdeltimeout Decimal     @default(10) @db.Decimal
   lvlupchannels   String[]    @db.VarChar
   lvlupemotes     String[]    @db.VarChar
   embed           Decimal?    @db.Decimal
+  lvlupmode       LevelUpMode @default(silent)
+
+  // Text
+  xppermsg        Decimal     @default(25) @db.Decimal
   ignoreprefixes  Boolean     @default(false)
   prefixes        String[]
   minwords        Decimal     @default(0) @db.Decimal
-  lvlupmode       LevelUpMode @default(silent)
+
+  // Voice
+  xppermin        Decimal     @default(5) @db.Decimal
+  requireUnmute   Boolean     @default(true)
+  minParticipants Decimal     @default(2) @db.Decimal
+  excludeBots     Boolean     @default(true)
+
+  // BL/WL
   blchannelid     String[]    @db.VarChar
   blroleid        String[]    @db.VarChar
   bluserid        String[]    @db.VarChar
@@ -503,7 +517,7 @@ model nitrosettings {
   guildid       String   @id @db.VarChar
   active        Boolean  @default(false)
   logchannels   String[] @db.VarChar
-  rolemode      Boolean  @default(true) // ture = stack, false = replace
+  rolemode      Boolean  @default(true)
   notifchannels String[] @db.VarChar
   notifembed    Decimal? @db.Decimal
   notification  Boolean  @default(false)
@@ -524,7 +538,7 @@ model punishments {
   guildid         String                @db.VarChar
   userid          String                @db.VarChar
   reason          String?
-  uniquetimestamp Decimal               @db.Decimal
+  uniquetimestamp Decimal               @id @db.Decimal
   channelid       String                @db.VarChar
   channelname     String
   executorid      String                @db.VarChar
@@ -534,7 +548,6 @@ model punishments {
   context         String?               @db.VarChar
   type            StoredPunishmentTypes
 
-  @@id(uniquetimestamp)
   @@index([guildid, userid])
 }
 
@@ -649,9 +662,7 @@ model stats {
   shardCount   Decimal @db.Decimal
   clusterCount Decimal @db.Decimal
   userInstalls Decimal @db.Decimal
-  timestamp    Decimal @db.Decimal
-
-  @@id(timestamp)
+  timestamp    Decimal @id @db.Decimal
 }
 
 model sticky {
@@ -731,12 +742,12 @@ model dmLog {
   threadId String @db.VarChar
   infoId   String @db.VarChar
 
-  @@index(threadId)
+  @@index([threadId])
 }
 
 model blockedusers {
   userid        String   @db.VarChar
-  blockeduserid String   @default("0") @db.VarChar // 0 means globally blocked
+  blockeduserid String   @default("0") @db.VarChar
   blockedcmd    String[]
 
   @@id([userid, blockeduserid])
@@ -917,11 +928,10 @@ model features {
 
 model heartbeats {
   ms        Decimal @db.Decimal
-  shard     Decimal @db.Decimal
+  shard     Decimal @id @db.Decimal
   timestamp Decimal @db.Decimal
 
-  @@id(shard)
-  @@index(shard)
+  @@index([shard])
 }
 
 model users {
@@ -933,9 +943,9 @@ model users {
   lastfetch      Decimal  @default(1) @db.Decimal
   ptremindersent Boolean  @default(false)
   votereminders  Boolean  @default(true)
-  tokens         tokens[]
-  apiToken       String?  @db.Text
+  apiToken       String?
   shrtUrlsAccess Boolean  @default(false)
+  tokens         tokens[]
 
   @@index([userid])
 }
@@ -943,89 +953,86 @@ model users {
 model tokens {
   userid       String   @db.VarChar
   botid        String   @db.VarChar
-  user         users    @relation(fields: [userid], references: [userid])
   accesstoken  String?  @db.VarChar
   refreshtoken String?  @db.VarChar
   expires      Decimal? @db.Decimal
   scopes       String[]
+  user         users    @relation(fields: [userid], references: [userid])
 
   @@id([userid, botid])
 }
 
 model linkedRolesDeco {
   roleId          String?  @db.VarChar
-  uniquetimestamp Decimal  @db.Decimal
+  uniquetimestamp Decimal  @id @db.Decimal
   guildid         String   @db.VarChar
   allowedUsers    String[] @db.VarChar
+  botId           String?  @db.VarChar
+  botSecret       String?  @db.VarChar
+  botToken        String?  @db.VarChar
 
-  botId     String? @db.VarChar
-  botSecret String? @db.VarChar
-  botToken  String? @db.VarChar
-
-  @@id(uniquetimestamp)
   @@index([uniquetimestamp])
 }
 
 model linkedRoleTokens {
   botId  String @db.VarChar
   userId String @db.VarChar
-  token  String @db.VarChar // refresh token
+  token  String @db.VarChar
 
   @@id([botId, userId])
 }
 
 model noCommandsGuilds {
-  guildId String @db.VarChar
+  guildId String @id @db.VarChar
 
-  @@id(guildId)
-  @@index(guildId)
+  @@index([guildId])
 }
 
 model blockingUsers {
-  userId  String  @db.VarChar
+  userId  String  @id @db.VarChar
   created Decimal @db.Decimal
 
-  @@id(userId)
-  @@index(userId)
+  @@index([userId])
 }
 
 model urlScans {
-  url     String  @db.Text
-  id      String  @db.Text
+  url     String
+  id      String  @id
   done    Boolean @default(false)
   expires Decimal @db.Decimal
 
-  @@id(id)
-  @@index(url)
+  @@index([url])
 }
 
 model shrtUrls {
-  id      String @db.Text
-  userId  String @db.VarChar
-  forward String @db.Text
-
-  uses shrtUrlUses[]
-
-  @@id(id)
+  id      String        @id
+  userId  String        @db.VarChar
+  forward String
+  uses    shrtUrlUses[]
 }
 
 model shrtUrlUses {
-  id        String  @db.Text
-  timestamp Decimal @db.Decimal
-
-  url shrtUrls @relation(fields: id, references: id)
-
-  @@id(timestamp)
+  id        String
+  timestamp Decimal  @id @db.Decimal
+  url       shrtUrls @relation(fields: [id], references: [id])
 }
 
 model voiceStateUpdateQueue {
-  userId  String @db.VarChar
-  guildId String @db.VarChar
-
-  deaf Boolean
-  mute Boolean
+  userId  String  @db.VarChar
+  guildId String  @db.VarChar
+  deaf    Boolean
+  mute    Boolean
 
   @@id([userId, guildId])
+}
+
+model event {
+  userId  String  @db.VarChar
+  identId String  @db.VarChar
+  hits    Int     @default(0)
+  has     Boolean @default(false)
+
+  @@id([identId, userId])
 }
 
 enum AutoPunishPunishmentType {
