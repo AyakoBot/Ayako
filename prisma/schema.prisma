@@ -403,14 +403,17 @@ model leveling {
   lvlupemotes     String[]    @db.VarChar
   embed           Decimal?    @db.Decimal
   lvlupmode       LevelUpMode @default(silent)
+  lvluptext       String?
 
   // Text
+  textenabled     Boolean     @default(true)
   xppermsg        Decimal     @default(25) @db.Decimal
   ignoreprefixes  Boolean     @default(false)
   prefixes        String[]
   minwords        Decimal     @default(0) @db.Decimal
 
   // Voice
+  voiceenabled    Boolean     @default(true)
   xppermin        Decimal     @default(5) @db.Decimal
   requireUnmute   Boolean     @default(true)
   minParticipants Decimal     @default(2) @db.Decimal
