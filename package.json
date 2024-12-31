@@ -21,7 +21,7 @@
   },
   "pnpm": {
     "patchedDependencies": {
-      "discord.js@14.16.1": "patches/discord.js@14.16.1.patch"
+      "discord.js@14.16.3": "patches/discord.js@14.16.3.patch"
     }
   },
   "prisma": {
