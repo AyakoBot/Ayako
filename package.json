@@ -11,20 +11,23 @@
   },
   "devDependencies": {
     "@manypkg/cli": "^0.23.0",
-    "@prisma/client": "^6.1.0",
-    "prisma": "^6.1.0"
+    "@prisma/client": "^6.2.1",
+    "prisma": "^6.2.1"
   },
   "packageManager": "pnpm@9.9.0",
   "engines": {
     "node": "^22.3.0",
     "pnpm": "^9.5.0"
   },
-  "pnpm": {
-    "patchedDependencies": {
-      "discord.js@14.16.3": "patches/discord.js@14.16.3.patch"
-    }
+  "overrides": {
+    "discord-api-types": "0.37.114"
   },
   "prisma": {
     "schema": "prisma/schema.prisma"
+  },
+  "pnpm": {
+    "patchedDependencies": {
+      "discord.js@14.17.3": "patches/discord.js@14.17.3.patch"
+    }
   }
 }
