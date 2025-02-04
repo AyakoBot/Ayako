@@ -1030,6 +1030,16 @@ model event {
   @@id([identId, userId])
 }
 
+model pingReport {
+  guildid    String   @db.VarChar
+  active     Boolean  @default(false)
+  roleIds    String[]
+  channelIds String[] @db.VarChar
+  cooldown   Decimal  @default(10) @db.Decimal
+
+  @@id([guildid])
+}
+
 enum AutoPunishPunishmentType {
   warn
   kick

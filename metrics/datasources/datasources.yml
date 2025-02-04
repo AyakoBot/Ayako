@@ -34,6 +34,23 @@ datasources:
     httpMethod: POST
    readOnly: false
 
+ - name: prometheus-dev
+   id: 2
+   uid: new-unique-uid-1234
+   orgId: 1
+   type: prometheus
+   typeName: Prometheus
+   typeLogoUrl: public/app/plugins/datasource/prometheus/img/prometheus_logo.svg
+   access: proxy
+   url: http://prometheus-dev:9090
+   user: ""
+   database: ""
+   basicAuth: false
+   isDefault: false
+   jsonData:
+    httpMethod: POST
+   readOnly: false
+
  - name: psql-Ayako
    id: 7
    uid: edvolne4j239cd

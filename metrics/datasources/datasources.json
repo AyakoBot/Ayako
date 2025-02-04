@@ -34,6 +34,23 @@
   "readOnly": false
  },
  {
+  "id": 2,
+  "uid": "new-unique-uid-1234",
+  "orgId": 1,
+  "name": "prometheus-dev",
+  "type": "prometheus",
+  "typeName": "Prometheus",
+  "typeLogoUrl": "public/app/plugins/datasource/prometheus/img/prometheus_logo.svg",
+  "access": "proxy",
+  "url": "http://prometheus-dev:9090",
+  "user": "",
+  "database": "",
+  "basicAuth": false,
+  "isDefault": true,
+  "jsonData": { "httpMethod": "POST" },
+  "readOnly": false
+ },
+ {
   "id": 7,
   "uid": "edvolne4j239cd",
   "orgId": 1,

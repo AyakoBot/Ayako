@@ -16,6 +16,10 @@ scrape_configs:
     static_configs:
       - targets: ['nirn:9000']
 
+  - job_name: 'nirn-dev'
+    static_configs:
+      - targets: ['nirn-dev:9000']
+
   - job_name: 'ayako'
     authorization:
       credentials: $METRICS_TOKEN
