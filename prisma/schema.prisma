@@ -417,6 +417,8 @@ model leveling {
   textenabled     Boolean     @default(true)
   voiceenabled    Boolean     @default(true)
   pingUser        Boolean     @default(false)
+  cooldown        Decimal     @default(60) @db.Decimal
+  cooldownType    Boolean     @default(false) // false = Guild, true = Channel
 
   @@index([guildid])
 }
@@ -1031,13 +1033,33 @@ model event {
 }
 
 model pingReport {
-  guildid    String   @db.VarChar
-  active     Boolean  @default(false)
-  roleIds    String[]
-  channelIds String[] @db.VarChar
-  cooldown   Decimal  @default(10) @db.Decimal
+  guildid         String   @db.VarChar
+  active          Boolean  @default(false)
+  channelIds      String[] @db.VarChar
+  cooldown        Decimal  @default(10) @db.Decimal
+  roleId          String?
+  uniquetimestamp Decimal  @id @db.Decimal
 
-  @@id([guildid])
+  @@index([roleId])
+}
+
+model votePunish {
+  guildid              String                   @db.VarChar
+  active               Boolean                  @default(false)
+  roleId               String?                  @db.VarChar
+  reqRoleAmount        Decimal?                 @default(2) @db.Decimal
+  uniquetimestamp      Decimal                  @id @db.Decimal
+  channelIds           String[]                 @db.VarChar
+  cooldown             Decimal                  @default(30) @db.Decimal
+  deleteMessageSeconds Decimal                  @default(604800) @db.Decimal
+  duration             Decimal                  @default(86400) @db.Decimal
+  punishment           AutoPunishPunishmentType @default(tempmute)
+  reqRoles             String[]                 @db.VarChar
+  blroleid             String[]                 @db.VarChar
+  bluserid             String[]                 @db.VarChar
+  voteInitRoles        String[]                 @db.VarChar
+
+  @@index([guildid])
 }
 
 enum AutoPunishPunishmentType {

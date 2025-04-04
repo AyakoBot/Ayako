@@ -3,7 +3,25 @@ services:
   image: redis:7.4
   restart: unless-stopped
   ports:
-   - "127.0.0.16379:6379"
+   - "127.0.0.1:6379:6379"
+  command: redis-server /usr/local/etc/redis/redis.conf
+  volumes:
+   - ./configs/redis.conf:/usr/local/etc/redis/redis.conf
+  ulimits:
+   nproc: 65535
+   nofile:
+    soft: 65535
+    hard: 65535
+  sysctls:
+   net.core.somaxconn: 1024
+  deploy:
+   resources:
+    limits:
+     cpus: "4"
+     memory: 8G
+    reservations:
+     cpus: "2"
+     memory: 4G
 
  postgres:
   image: postgres:16.4
@@ -78,15 +96,18 @@ services:
   restart: unless-stopped
   volumes:
    - grafana-data:/var/lib/grafana
-   - ./metrics/dashboards:/etc/grafana/provisioning/dashboards
-   - ./metrics/datasources:/etc/grafana/provisioning/datasources
+   - ./configs/dashboards:/etc/grafana/provisioning/dashboards
+   - ./configs/datasources:/etc/grafana/provisioning/datasources
+  environment:
+    - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASS}
+    - GF_SECURITY_ADMIN_USER=admin
 
  prometheus:
   image: prom/prometheus
   restart: unless-stopped
   volumes:
    - prometheus-data:/prometheus
-   - ./metrics/prometheus.yml:/etc/prometheus/prometheus.yml
+   - ./configs/prometheus.yml:/etc/prometheus/prometheus.yml
 
 volumes:
  db-data:

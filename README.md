@@ -14,15 +14,24 @@ git clone git@github.com/AyakoBot/Ayako.git --recurse
 cd ./scripts
 ./postclone.sh
 ```
+- Apply Redis performance settings
+```bash
+sudo sysctl -w vm.overcommit_memory=1
+sudo sysctl -w vm.overcommit_memory=1
+sudo sysctl -w vm.nr_hugepages=1024
+echo 'vm.overcommit_memory = 1' | sudo tee -a /etc/sysctl.conf
+echo 'vm.overcommit_memory = 1' | sudo tee -a /etc/sysctl.conf
+echo 'vm.nr_hugepages = 1024' | sudo tee -a /etc/sysctl.conf
+```
 - Build and run the Docker Compose image
 ```bash
 docker compose up -d
 ```
 ### Re-building / Re-starting the Docker Compose image
 ```bash
-docker compose down ayako
 docker compose build ayako --no-cache
-docker compose up ayako -d
+docker compose down ayako 
+docker compose up ayako -d 
 ```
 
 ## Just Ayako
