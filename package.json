@@ -10,17 +10,17 @@
     "apps/*"
   ],
   "scripts": {
-    "postinstall": "pnpm manypkg fix && pnpm manypkg check",
     "prisma:push": "pnpx prisma db push"
   },
   "devDependencies": {
+    "@ayako/gateway": "2.12.0",
     "@manypkg/cli": "^0.24.0",
-    "@prisma/client": "^6.7.0",
-    "prisma": "^6.7.0"
+    "@prisma/client": "^6.17.1",
+    "prisma": "^6.17.1"
   },
-  "packageManager": "pnpm@10.10.0",
+  "packageManager": "pnpm@10.19.0",
   "engines": {
-    "node": "^22.3.0",
+    "node": "^24.9.0",
     "pnpm": "^10.10.0"
   },
   "overrides": {
@@ -35,6 +35,14 @@
     },
     "ignoredBuiltDependencies": [
       "@swc/core"
-    ]
+    ],
+    "overrides": {
+      "@ayako/gateway": "link:packages/Gateway"
+    }
+  },
+  "dependencies": {
+    "@ayako/database": "link:packages/Database",
+    "@ayako/service": "link:packages/Service",
+    "@ayako/utility": "link:packages/Utility"
   }
 }
