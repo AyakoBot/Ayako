@@ -10,7 +10,16 @@
     "apps/*"
   ],
   "scripts": {
-    "prisma:push": "pnpx prisma db push"
+    "prisma:push": "pnpx prisma db push",
+    "regen-lockfiles": "pnpm run regen:dashboard && pnpm run regen:website && pnpm run regen:server && pnpm run regen:bot && pnpm run regen:service && pnpm run regen:gateway && pnpm run regen:utility && pnpm run regen:database",
+    "regen:dashboard": "cd ./apps/Dashboard && pnpm install",
+    "regen:website": "cd ./apps/Website && pnpm install",
+    "regen:server": "cd ./apps/Server && pnpm install",
+    "regen:bot": "cd ./packages/Bot && pnpm install",
+    "regen:service": "cd ./packages/Service && pnpm install",
+    "regen:gateway": "cd ./packages/Gateway && pnpm install",
+    "regen:utility": "cd ./packages/Utility && pnpm install",
+    "regen:database": "cd ./packages/Database && pnpm install"
   },
   "devDependencies": {
     "@manypkg/cli": "^0.25.1",
