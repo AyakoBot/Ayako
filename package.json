@@ -13,15 +13,14 @@
     "prisma:push": "pnpx prisma db push"
   },
   "devDependencies": {
-    "@ayako/gateway": "2.12.0",
-    "@manypkg/cli": "^0.24.0",
-    "@prisma/client": "^6.17.1",
-    "prisma": "^6.17.1"
+    "@manypkg/cli": "^0.25.1",
+    "@prisma/client": "^7.3.0",
+    "prisma": "^7.3.0"
   },
   "packageManager": "pnpm@10.19.0",
   "engines": {
     "node": "^24.9.0",
-    "pnpm": "^10.10.0"
+    "pnpm": "^9.10.0"
   },
   "overrides": {
     "discord-api-types": "0.37.114"
