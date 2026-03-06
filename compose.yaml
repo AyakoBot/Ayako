@@ -29,7 +29,7 @@ services:
   environment:
    POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
   ports:
-   - "127.0.0.15432:5432"
+   - "127.0.0.1:5432:5432"
   volumes:
    - db-data:/var/lib/postgresql/data
 
@@ -38,6 +38,8 @@ services:
   restart: unless-stopped
   environment:
    REQUEST_TIMEOUT: 15000
+  ports:
+   - "127.0.0.1:8080:8080"
 
  ayako-dev:
   build:
