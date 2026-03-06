@@ -1,0 +1,171 @@
+diff --git a/typings/index.d.mts b/typings/index.d.mts
+index ab2bc793e12deffc226604121fa444cbc7870382..7061fb0153a4e3e7f51b30392ef795a0a247ba3b 100644
+--- a/typings/index.d.mts
++++ b/typings/index.d.mts
+@@ -1,3 +1,5 @@
++import Util from '@ayako/bot/src/BaseClient/Bot/Util.js';
++import * as Sharding from 'discord-hybrid-sharding';
+ import {
+   ActionRowBuilder as BuilderActionRow,
+   MessageActionRowComponentBuilder,
+@@ -288,6 +290,64 @@ import {
+   RawWidgetMemberData,
+ } from './rawDataTypes.mjs';
+ 
++export {
++  RawActivityData,
++  RawAnonymousGuildData,
++  RawApplicationCommandData,
++  RawApplicationData,
++  RawApplicationEmojiData,
++  RawBaseGuildData,
++  RawChannelData,
++  RawClientApplicationData,
++  RawDMChannelData,
++  RawEmojiData,
++  RawGuildAuditLogData,
++  RawGuildAuditLogEntryData,
++  RawGuildBanData,
++  RawGuildChannelData,
++  RawGuildData,
++  RawGuildEmojiData,
++  RawGuildMemberData,
++  RawGuildPreviewData,
++  RawGuildScheduledEventData,
++  RawGuildTemplateData,
++  RawIntegrationApplicationData,
++  RawIntegrationData,
++  RawInteractionData,
++  RawInviteData,
++  RawInviteGuildData,
++  RawInviteStageInstance,
++  RawMessageButtonInteractionData,
++  RawMessageComponentInteractionData,
++  RawMessageData,
++  RawMessagePayloadData,
++  RawMessageReactionData,
++  RawOAuth2GuildData,
++  RawPartialGroupDMChannelData,
++  RawPartialMessageData,
++  RawPermissionOverwriteData,
++  RawPresenceData,
++  RawReactionEmojiData,
++  RawRichPresenceAssets,
++  RawRoleData,
++  RawStageInstanceData,
++  RawStickerData,
++  RawStickerPackData,
++  RawTeamData,
++  RawTeamMemberData,
++  RawThreadChannelData,
++  RawThreadMemberData,
++  RawTypingData,
++  RawUserData,
++  RawVoiceRegionData,
++  RawVoiceStateData,
++  RawWebhookData,
++  RawWelcomeChannelData,
++  RawWelcomeScreenData,
++  RawWidgetData,
++  RawWidgetMemberData,
++} from './rawDataTypes.mjs';
++
+ //#region Classes
+ 
+ export class Activity {
+@@ -1124,6 +1184,9 @@ export class Client<Ready extends boolean = boolean> extends BaseClient {
+     options?: { signal?: AbortSignal | undefined },
+   ): AsyncEventIterator<Emitter extends Client ? ClientEvents[Event] : any[]>;
+ 
++  public util: typeof Util;
++  public cluster?: Sharding.ClusterClient<typeof this>;
++
+   public application: If<Ready, ClientApplication>;
+   public channels: ChannelManager;
+   public get emojis(): BaseGuildEmojiManager;
+diff --git a/typings/index.d.ts b/typings/index.d.ts
+index bc2515e3726a208594d842c5d5b1ece84b66540e..f24a1eac9166c832de61ba30424385fed1e74ce3 100644
+--- a/typings/index.d.ts
++++ b/typings/index.d.ts
+@@ -1,3 +1,5 @@
++import Util from '@ayako/bot/src/BaseClient/Bot/Util.js';
++import * as Sharding from 'discord-hybrid-sharding';
+ import {
+   ActionRowBuilder as BuilderActionRow,
+   MessageActionRowComponentBuilder,
+@@ -288,6 +290,65 @@ import {
+   RawWidgetMemberData,
+ } from './rawDataTypes.js';
+ 
++
++export {
++  RawActivityData,
++  RawAnonymousGuildData,
++  RawApplicationCommandData,
++  RawApplicationData,
++  RawApplicationEmojiData,
++  RawBaseGuildData,
++  RawChannelData,
++  RawClientApplicationData,
++  RawDMChannelData,
++  RawEmojiData,
++  RawGuildAuditLogData,
++  RawGuildAuditLogEntryData,
++  RawGuildBanData,
++  RawGuildChannelData,
++  RawGuildData,
++  RawGuildEmojiData,
++  RawGuildMemberData,
++  RawGuildPreviewData,
++  RawGuildScheduledEventData,
++  RawGuildTemplateData,
++  RawIntegrationApplicationData,
++  RawIntegrationData,
++  RawInteractionData,
++  RawInviteData,
++  RawInviteGuildData,
++  RawInviteStageInstance,
++  RawMessageButtonInteractionData,
++  RawMessageComponentInteractionData,
++  RawMessageData,
++  RawMessagePayloadData,
++  RawMessageReactionData,
++  RawOAuth2GuildData,
++  RawPartialGroupDMChannelData,
++  RawPartialMessageData,
++  RawPermissionOverwriteData,
++  RawPresenceData,
++  RawReactionEmojiData,
++  RawRichPresenceAssets,
++  RawRoleData,
++  RawStageInstanceData,
++  RawStickerData,
++  RawStickerPackData,
++  RawTeamData,
++  RawTeamMemberData,
++  RawThreadChannelData,
++  RawThreadMemberData,
++  RawTypingData,
++  RawUserData,
++  RawVoiceRegionData,
++  RawVoiceStateData,
++  RawWebhookData,
++  RawWelcomeChannelData,
++  RawWelcomeScreenData,
++  RawWidgetData,
++  RawWidgetMemberData,
++} from './rawDataTypes.mjs';
++
+ //#region Classes
+ 
+ export class Activity {
+@@ -1124,6 +1185,9 @@ export class Client<Ready extends boolean = boolean> extends BaseClient {
+     options?: { signal?: AbortSignal | undefined },
+   ): AsyncEventIterator<Emitter extends Client ? ClientEvents[Event] : any[]>;
+ 
++  public util: typeof Util;
++  public cluster?: Sharding.ClusterClient<typeof this>;
++
+   public application: If<Ready, ClientApplication>;
+   public channels: ChannelManager;
+   public get emojis(): BaseGuildEmojiManager;

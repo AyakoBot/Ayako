@@ -1,0 +1,20 @@
+diff --git a/typings/index.d.ts b/typings/index.d.ts
+index 4933e41be14e20a72fe0617d5d3fdbfc6d6b4b89..915280718cd41181ef7996deca34e8256b7da4dc 100644
+--- a/typings/index.d.ts
++++ b/typings/index.d.ts
+@@ -1,3 +1,5 @@
++import Util from '@ayako/bot/src/BaseClient/Bot/Util.js';
++import * as Sharding from 'discord-hybrid-sharding';
+ import {
+   ActionRowBuilder as BuilderActionRow,
+   MessageActionRowComponentBuilder,
+@@ -1092,6 +1094,9 @@ export class Client<Ready extends boolean = boolean> extends BaseClient {
+     options?: { signal?: AbortSignal | undefined },
+   ): AsyncEventIterator<Emitter extends Client ? ClientEvents[Event] : any[]>;
+ 
++  public util: typeof Util;
++  public cluster?: Sharding.ClusterClient<typeof this>;
++
+   public application: If<Ready, ClientApplication>;
+   public channels: ChannelManager;
+   public get emojis(): BaseGuildEmojiManager;

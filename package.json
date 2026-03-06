@@ -10,47 +10,47 @@
     "apps/*"
   ],
   "scripts": {
-    "prisma:push": "pnpx prisma db push",
-    "regen-lockfiles": "pnpm run regen:dashboard && pnpm run regen:website && pnpm run regen:server && pnpm run regen:bot && pnpm run regen:service && pnpm run regen:gateway && pnpm run regen:utility && pnpm run regen:database",
-    "regen:dashboard": "cd ./apps/Dashboard && pnpm install",
-    "regen:website": "cd ./apps/Website && pnpm install",
-    "regen:server": "cd ./apps/Server && pnpm install",
-    "regen:bot": "cd ./packages/Bot && pnpm install",
-    "regen:service": "cd ./packages/Service && pnpm install",
-    "regen:gateway": "cd ./packages/Gateway && pnpm install",
-    "regen:utility": "cd ./packages/Utility && pnpm install",
-    "regen:database": "cd ./packages/Database && pnpm install"
+    "postinstall": "",
+    "prisma:push": "pnpx prisma db push"
   },
   "devDependencies": {
+    "@ayako/bot": "link:packages/Bot",
     "@manypkg/cli": "^0.25.1",
-    "@prisma/client": "^7.3.0",
-    "prisma": "^7.3.0"
+    "@prisma/client": "^6.18.0",
+    "prisma": "^6.18.0"
   },
-  "packageManager": "pnpm@10.19.0",
+  "packageManager": "pnpm@10.28.2",
   "engines": {
-    "node": "^24.13.0",
-    "pnpm": "^10.19.0"
+    "node": "^24.0.1",
+    "pnpm": "^10.18.2"
   },
   "overrides": {
-    "discord-api-types": "0.37.114"
+    "discord-api-types": "0.38.37"
   },
   "prisma": {
     "schema": "prisma/schema.prisma"
   },
   "pnpm": {
-    "patchedDependencies": {
-      "discord.js@14.19.2": "patches/discord.js@14.19.2.patch"
-    },
     "ignoredBuiltDependencies": [
       "@swc/core"
     ],
+    "patchedDependencies": {
+      "discord.js@14.25.1": "patches/discord.js@14.25.1.patch"
+    },
     "overrides": {
-      "@ayako/gateway": "link:packages/Gateway"
+      "@ayako/bot": "link:packages/Bot",
+      "@ayako/gateway": "link:packages/Gateway",
+      "@ayako/utility": "link:packages/Utility",
+      "@ayako/database": "link:packages/Database",
+      "@ayako/api": "link:packages/API"
     }
   },
   "dependencies": {
+    "@ayako/api": "link:packages/API",
     "@ayako/database": "link:packages/Database",
+    "@ayako/gateway": "link:packages/Gateway",
     "@ayako/service": "link:packages/Service",
-    "@ayako/utility": "link:packages/Utility"
+    "@ayako/utility": "link:packages/Utility",
+    "@ayako/website": "link:apps/Website"
   }
 }
