@@ -71,6 +71,7 @@ model appeals {
   punishmentid Decimal      @id @db.Decimal
   status       AppealStatus @default(pending)
   received     Boolean      @default(false)
+  reason       String?
 
   @@index([userid, punishmentid])
 }
@@ -153,9 +154,10 @@ model censor {
 }
 
 model customroles {
-  guildid String @db.VarChar
-  userid  String @db.VarChar
-  roleid  String @db.VarChar
+  guildid String   @db.VarChar
+  userid  String   @db.VarChar
+  roleid  String   @db.VarChar
+  shared  String[] @db.VarChar
 
   @@id([guildid, userid])
   @@index([guildid, userid])
@@ -372,7 +374,6 @@ model level {
   guildid    String    @default("1") @db.VarChar
   type       LevelType
   xp         Decimal   @default(0) @db.Decimal
-  level      Decimal   @default(0) @db.Decimal
   multiplier Decimal   @default(1) @db.Decimal
 
   @@id([userid, guildid, type])
@@ -390,37 +391,53 @@ model levelchannels {
 }
 
 model leveling {
-  guildid         String      @id @db.VarChar
-  active          Boolean     @default(true)
-  xpmultiplier    Decimal     @default(1) @db.Decimal
-  xppermsg        Decimal     @default(25) @db.Decimal
-  rolemode        Boolean     @default(false)
-  lvlupdeltimeout Decimal     @default(10) @db.Decimal
-  lvlupchannels   String[]    @db.VarChar
-  lvlupemotes     String[]    @db.VarChar
-  embed           Decimal?    @db.Decimal
-  ignoreprefixes  Boolean     @default(false)
-  prefixes        String[]
-  minwords        Decimal     @default(0) @db.Decimal
-  lvlupmode       LevelUpMode @default(silent)
-  blchannelid     String[]    @db.VarChar
-  blroleid        String[]    @db.VarChar
-  bluserid        String[]    @db.VarChar
-  wlchannelid     String[]    @db.VarChar
-  wlroleid        String[]    @db.VarChar
-  wluserid        String[]    @db.VarChar
-  excludeBots     Boolean     @default(true)
-  minParticipants Decimal     @default(2) @db.Decimal
-  requireUnmute   Boolean     @default(true)
-  xppermin        Decimal     @default(5) @db.Decimal
-  lvluptext       String?
-  textenabled     Boolean     @default(true)
-  voiceenabled    Boolean     @default(true)
-  pingUser        Boolean     @default(false)
-  cooldown        Decimal     @default(60) @db.Decimal
-  cooldownType    Boolean     @default(false) // false = Guild, true = Channel
+  xppermin Decimal @default(1) @db.Decimal
+  xppermsg Decimal @default(1) @db.Decimal
+
+  guildid          String      @id @db.VarChar
+  active           Boolean     @default(true)
+  xpmultiplier     Decimal     @default(1) @db.Decimal
+  rolemode         Boolean     @default(false)
+  lvlupdeltimeout  Decimal     @default(10) @db.Decimal
+  lvlupchannels    String[]    @db.VarChar
+  lvlupemotes      String[]    @db.VarChar
+  embed            Decimal?    @db.Decimal
+  ignoreprefixes   Boolean     @default(false)
+  prefixes         String[]
+  minwords         Decimal     @default(0) @db.Decimal
+  lvlupmode        LevelUpMode @default(silent)
+  blchannelid      String[]    @db.VarChar
+  blroleid         String[]    @db.VarChar
+  bluserid         String[]    @db.VarChar
+  wlchannelid      String[]    @db.VarChar
+  wlroleid         String[]    @db.VarChar
+  wluserid         String[]    @db.VarChar
+  excludeBots      Boolean     @default(true)
+  minParticipants  Decimal     @default(2) @db.Decimal
+  requireUnmute    Boolean     @default(true)
+  lvluptext        String?
+  textenabled      Boolean     @default(true)
+  voiceenabled     Boolean     @default(true)
+  pingUser         Boolean     @default(false)
+  cooldown         Decimal     @default(60) @db.Decimal
+  cooldownType     Boolean     @default(false)
+  msgXpRangeBottom Decimal     @default(15) @db.Decimal
+  msgXpRangeTop    Decimal     @default(25) @db.Decimal
+  vcXpRangeBottom  Decimal     @default(0) @db.Decimal
+  vcXpRangeTop     Decimal     @default(10) @db.Decimal
+  formulaType      FormulaType @default(polynomial)
+  curveModifier    Decimal     @default(100) @db.Decimal
 
   @@index([guildid])
+}
+
+enum FormulaType {
+  logarithmic
+  linear
+  quadratic
+  cubic
+  polynomial
+  exponential
 }
 
 model levelingmultichannels {
@@ -569,16 +586,6 @@ model reactionrolesettings {
   @@index([guildid, uniquetimestamp])
 }
 
-model reminders {
-  userid          String  @db.VarChar
-  channelid       String  @db.VarChar
-  reason          String
-  uniquetimestamp Decimal @id @db.Decimal
-  endtime         Decimal @db.Decimal
-
-  @@index([userid, uniquetimestamp])
-}
-
 model reviews {
   userid   String  @id @db.VarChar
   score    Decimal @default(1) @db.Decimal
@@ -600,9 +607,12 @@ model rolerewards {
   roles           String[] @db.VarChar
   cansetcolor     Boolean  @default(true)
   canseticon      Boolean  @default(true)
+  cansetgradient  Boolean  @default(true)
+  cansetholo      Boolean  @default(false)
   positionrole    String?
   blroleid        String[] @db.VarChar
   bluserid        String[] @db.VarChar
+  maxShare        Decimal  @default(0) @db.Decimal
 
   @@index([guildid, uniquetimestamp])
 }
@@ -819,22 +829,36 @@ model votesettings {
 }
 
 model welcome {
-  guildid   String   @id @db.VarChar
-  channelid String?  @db.VarChar
-  active    Boolean  @default(false)
-  embed     Decimal? @db.Decimal
-  pingroles String[] @db.VarChar
-  pingusers String[] @db.VarChar
-  pingjoin  Boolean  @default(false)
+  guildid      String   @db.VarChar
+  channelid    String?  @db.VarChar
+  active       Boolean  @default(false)
+  embed        Decimal? @db.Decimal
+  pingroles    String[] @db.VarChar
+  pingusers    String[] @db.VarChar
+  pingjoin     Boolean  @default(false)
+  gifChannelId String?  @db.VarChar
 
+  @@id(guildid)
   @@index([guildid])
 }
 
+model WelcomeGIF {
+  guildId   String @db.VarChar
+  channelId String @db.VarChar
+  msgId     String @db.VarChar
+  url       String @db.Text
+
+  @@id([msgId, url])
+  @@index(guildId)
+  @@index(msgId)
+}
+
 model deletethreads {
-  guildid    String  @id @db.VarChar
+  guildid    String  @db.VarChar
   channelid  String  @db.VarChar
   deletetime Decimal @db.Decimal
 
+  @@id(channelid)
   @@index([guildid])
 }
 
@@ -964,6 +988,7 @@ model linkedRolesDeco {
   uniquetimestamp Decimal  @id @db.Decimal
   guildid         String   @db.VarChar
   allowedUsers    String[] @db.VarChar
+  allowedRoles    String[] @db.VarChar
   botId           String?  @db.VarChar
   botSecret       String?  @db.VarChar
   botToken        String?  @db.VarChar
@@ -1060,6 +1085,61 @@ model votePunish {
   voteInitRoles        String[]                 @db.VarChar
 
   @@index([guildid])
+}
+
+model Reminder {
+  userId    String  @db.VarChar
+  channelId String  @db.VarChar
+  reason    String
+  startTime Decimal @id @db.Decimal
+  endTime   Decimal @db.Decimal
+
+  @@index([userId, startTime])
+}
+
+model ticketing {
+  uniquetimestamp     Decimal    @id @db.Decimal
+  guildid             String     @db.VarChar
+  active              Boolean    @default(false)
+  logChannelIds       String[]   @db.VarChar
+  archiveCategoryId   String?    @db.VarChar
+  type                TicketType @default(Thread)
+  // Only need on dmToThread & Thread
+  archiveDuration     Decimal    @default(60) @db.Decimal
+  channelId           String?    @db.VarChar
+  // Only need on dmToChannel & Channel
+  categoryId          String?    @db.VarChar
+  // Only need on dmToThread & dmToChannel
+  sendMessagePrefixes String[]   @db.Text
+
+  mentionRoles String[] @db.VarChar
+  mentionUsers String[] @db.VarChar
+
+  bluserid String[]   @db.VarChar
+  blroleid String[]   @db.VarChar
+  DMTicket DMTicket[]
+
+  @@index(guildid)
+  @@index(type)
+}
+
+model DMTicket {
+  dmId       String  @id @db.VarChar
+  userId     String  @unique @db.VarChar
+  channelId  String  @unique @db.VarChar
+  settingsId Decimal @db.Decimal
+
+  settings ticketing @relation(fields: [settingsId], references: [uniquetimestamp])
+
+  @@index(dmId)
+  @@index(channelId)
+}
+
+enum TicketType {
+  dmToThread
+  dmToChannel
+  Thread
+  Channel
 }
 
 enum AutoPunishPunishmentType {
