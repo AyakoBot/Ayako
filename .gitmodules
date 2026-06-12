@@ -18,3 +18,27 @@
 	path = packages/CDN
 	url = https://github.com/AyakoBot/Website-CDN.git
  branch = main
+[submodule "packages/API"]
+	path = packages/API
+	url = https://github.com/AyakoBot/API.git
+ branch = main
+[submodule "packages/Database"]
+	path = packages/Database
+	url = https://github.com/AyakoBot/Database.git
+ branch = main
+[submodule "packages/Gateway"]
+	path = packages/Gateway
+	url = https://github.com/AyakoBot/Gateway.git
+ branch = main
+[submodule "packages/Server"]
+	path = packages/Server
+	url = https://github.com/AyakoBot/Server.git
+ branch = main
+[submodule "packages/Service"]
+	path = packages/Service
+	url = https://github.com/AyakoBot/Service.git
+ branch = main
+[submodule "packages/Utility"]
+	path = packages/Utility
+	url = https://github.com/AyakoBot/Utility.git
+ branch = main
