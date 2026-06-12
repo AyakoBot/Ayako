@@ -20,7 +20,7 @@ scrape_configs:
     authorization:
       credentials: "r6rQTzB4Yy9BE2sXfYR7xmyuujEXkA5E5U5PykZFW8gErUMWB1KxbG6hi72wo9Bh"
     static_configs:
-      - targets: ['api.ayakobot.com']
+      - targets: ['api:443']
 
   - job_name: postgres
     static_configs:
