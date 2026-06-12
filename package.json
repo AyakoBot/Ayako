@@ -15,11 +15,9 @@
   },
   "devDependencies": {
     "@ayako/bot": "link:packages/Bot",
-    "@manypkg/cli": "^0.25.1",
-    "@prisma/client": "^6.18.0",
-    "prisma": "^6.18.0"
+    "@manypkg/cli": "^0.25.1"
   },
-  "packageManager": "pnpm@10.28.2",
+  "packageManager": "pnpm@11.6.0",
   "engines": {
     "node": "^24.0.1",
     "pnpm": "^10.18.2"
@@ -31,12 +29,13 @@
     "schema": "prisma/schema.prisma"
   },
   "pnpm": {
+    "onlyBuiltDependencies": [
+      "@prisma/engines",
+      "prisma"
+    ],
     "ignoredBuiltDependencies": [
       "@swc/core"
     ],
-    "patchedDependencies": {
-      "discord.js@14.25.1": "patches/discord.js@14.25.1.patch"
-    },
     "overrides": {
       "@ayako/bot": "link:packages/Bot",
       "@ayako/gateway": "link:packages/Gateway",
