@@ -38,3 +38,10 @@ ignoredBuiltDependencies:
 overrides:
   prisma: 6.19.1
   '@prisma/client': 6.19.1
+
+# This monorepo is entirely git submodules (incl. the deploy target apps/Website);
+# a local checkout can't mirror CI's recursively-checked-out submodule SHAs, so the
+# root lockfile inevitably drifts from the submodule package.json set on CI. Don't
+# hard-fail the build on that — let pnpm reconcile the lockfile during install.
+# (Overrides CI's default of frozen-lockfile=true.)
+frozenLockfile: false
