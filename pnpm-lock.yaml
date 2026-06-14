@@ -38,7 +38,7 @@ importers:
     dependencies:
       '@ayako/bot':
         specifier: workspace:*
-        version: link:../../packages/Bot
+        version: link:../../packages/Ayako-v2
       '@formkit/auto-animate':
         specifier: ^0.8.2
         version: 0.8.4
@@ -355,7 +355,7 @@ importers:
         specifier: ^8.60.0
         version: 8.61.0(eslint@10.5.0(jiti@2.7.0))(typescript@6.0.3)
 
-  packages/Bot:
+  packages/Ayako-v2:
     dependencies:
       '@discordjs/core':
         specifier: ^2.4.0
@@ -699,7 +699,7 @@ importers:
     dependencies:
       '@ayako/bot':
         specifier: workspace:*
-        version: link:../Bot
+        version: link:../Ayako-v2
       '@discordjs/core':
         specifier: ^2.4.0
         version: 2.4.0
