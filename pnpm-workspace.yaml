@@ -3,37 +3,13 @@ packages:
  - 'apps/*'
 
 # Dependency build-script policy.
-# pnpm 11 does NOT read the "pnpm" field from package.json — these settings
-# must live here, in pnpm-workspace.yaml. pnpm 11 also FAILS the install
-# (ERR_PNPM_IGNORED_BUILDS, the Cloudflare Pages error) if any dependency
-# with an install script is left unclassified. Every such dependency must be
-# in exactly one of the two lists below.
-
-# Run their install scripts:
-#  - prisma stack       -> `prisma generate` + engine download (bot, Server)
-#  - canvas/sharp/skia  -> download prebuilt binaries (bot, Service); no source
-#                          compile, so they're safe on the Cloudflare image too
-#  - esbuild            -> ensures Vite's native binary exists for the web build
-onlyBuiltDependencies:
- - '@prisma/client'
- - '@prisma/engines'
- - prisma
- - canvas
- - sharp
- - skia-canvas
- - esbuild
-
-# Acknowledge but DON'T run — each works without its install script because the
-# binary ships via an optional platform package or there is a JS fallback:
-#  - @swc/core      -> binary from @swc/core-<platform> (bot compiles via swc cli)
-#  - cbor-extract   -> optional accelerator for cbor-x, JS fallback
-#  - unrs-resolver  -> napi resolver with prebuilt platform packages
-#  - workerd        -> only needed for `wrangler dev`/preview, not the build
-ignoredBuiltDependencies:
- - '@swc/core'
- - cbor-extract
- - unrs-resolver
- - workerd
+# pnpm blocks dependency install scripts by default and aborts a non-interactive
+# install with ERR_PNPM_IGNORED_BUILDS (the Cloudflare Pages error) until they're
+# allowed. Verified empirically on pnpm 11.6.0: onlyBuiltDependencies /
+# ignoredBuiltDependencies do NOT suppress that error in CI — only this does.
+# The needed scripts are first-party + mainstream native deps (prisma generate,
+# canvas / sharp / skia-canvas, esbuild, …), a trusted set, so allow them all.
+dangerouslyAllowAllBuilds: true
 
 overrides:
   prisma: 6.19.1
