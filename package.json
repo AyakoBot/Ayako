@@ -15,7 +15,9 @@
   },
   "devDependencies": {
     "@ayako/bot": "link:packages/Bot",
-    "@manypkg/cli": "^0.25.1"
+    "@manypkg/cli": "^0.25.1",
+    "prisma": "6.19.1",
+    "@prisma/client": "6.19.1"
   },
   "packageManager": "pnpm@11.6.0",
   "engines": {
@@ -29,13 +31,6 @@
     "schema": "prisma/schema.prisma"
   },
   "pnpm": {
-    "onlyBuiltDependencies": [
-      "@prisma/engines",
-      "prisma"
-    ],
-    "ignoredBuiltDependencies": [
-      "@swc/core"
-    ],
     "overrides": {
       "@ayako/bot": "link:packages/Bot",
       "@ayako/gateway": "link:packages/Gateway",
