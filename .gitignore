@@ -3,3 +3,5 @@
 /temp
 /.idea
 /metrics/prometheus.yml
+# Prisma client generated at build (platform-specific engine)
+prisma-client-generated/
