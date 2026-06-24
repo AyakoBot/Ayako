@@ -42,3 +42,7 @@
 	path = packages/Utility
 	url = https://github.com/AyakoBot/Utility.git
  branch = main
+[submodule "packages/Satellites"]
+	path = packages/Satellites
+	url = https://github.com/Larsundso/Satellites.git
+ branch = main

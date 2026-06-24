@@ -45,6 +45,7 @@
     "@ayako/gateway": "link:packages/Gateway",
     "@ayako/service": "link:packages/Service",
     "@ayako/utility": "link:packages/Utility",
-    "@ayako/website": "link:apps/Website"
+    "@ayako/website": "link:apps/Website",
+    "@ayako/satellites": "link:packages/Satellites"
   }
 }

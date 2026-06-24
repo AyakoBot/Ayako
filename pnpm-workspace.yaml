@@ -11,10 +11,6 @@ packages:
 # canvas / sharp / skia-canvas, esbuild, …), a trusted set, so allow them all.
 dangerouslyAllowAllBuilds: true
 
-overrides:
-  prisma: 6.19.1
-  '@prisma/client': 6.19.1
-
 # This monorepo is entirely git submodules (incl. the deploy target apps/Website);
 # a local checkout can't mirror CI's recursively-checked-out submodule SHAs, so the
 # root lockfile inevitably drifts from the submodule package.json set on CI. Don't
