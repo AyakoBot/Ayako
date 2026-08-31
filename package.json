@@ -11,7 +11,7 @@
   ],
   "scripts": {
     "postinstall": "",
-    "prisma:push": "pnpx prisma db push"
+    "prisma:push": "pnpx prisma@7.8.0 db push"
   },
   "devDependencies": {
     "@ayako/bot": "link:packages/Bot",
@@ -23,9 +23,6 @@
   "engines": {
     "node": "^25.6.0",
     "pnpm": "^11.6.0"
-  },
-  "overrides": {
-    "discord-api-types": "0.38.37"
   },
   "prisma": {
     "schema": "prisma/schema.prisma"

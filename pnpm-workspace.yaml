@@ -17,3 +17,12 @@ dangerouslyAllowAllBuilds: true
 # hard-fail the build on that — let pnpm reconcile the lockfile during install.
 # (Overrides CI's default of frozen-lockfile=true.)
 frozenLockfile: false
+
+# Pin discord-api-types to a single version across the workspace. Its enums
+# (SubscriptionStatus, GatewayOpcodes, …) are real runtime values, so two copies
+# yield incompatible enum identities — TS2345/TS2322 at build (Ending 1≠2) plus
+# latent runtime bugs. Every active V3 package pins 0.38.49; force it everywhere.
+# Must live here: pnpm 10+ no longer reads package.json pnpm.overrides.
+# REMOVE FOR AYAKO BUILDS
+overrides:
+ discord-api-types: 0.38.49
